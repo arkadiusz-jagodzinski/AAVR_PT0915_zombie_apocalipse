@@ -49,6 +49,6 @@ public class PlayerScript : MonoBehaviour
 
     void Update()
     {
-
+        Debug.DrawRay(spawnPoint.transform.position, spawnPoint.transform.forward, Color.green);
     }
 }
