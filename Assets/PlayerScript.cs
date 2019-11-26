@@ -14,20 +14,9 @@ public class PlayerScript : MonoBehaviour
     {
         gun = gameObject.transform.GetChild(0).gameObject;
         spawnPoint = gun.transform.GetChild(0).gameObject;
-        coroutine = ShootInLoop(2.0f);
-        StartCoroutine(coroutine);
     }
 
-    IEnumerator ShootInLoop(float period)
-    {
-        while (true)
-        {
-            yield return new WaitForSeconds(period);
-            StartCoroutine("Shoot");
-        }
-    }
-
-    IEnumerator Shoot()
+    public IEnumerator Shoot()
     {
         GameObject bullet = Instantiate(Resources.Load("bullet", typeof(GameObject))) as GameObject;
 
