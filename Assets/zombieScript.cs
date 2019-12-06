@@ -5,6 +5,8 @@ public class zombieScript : MonoBehaviour
 {
     private Transform goal;
     private UnityEngine.AI.NavMeshAgent agent;
+    public AudioClip deathSound;
+    public AudioClip respawnSound;
 
     void Start()
     {
@@ -15,6 +17,7 @@ public class zombieScript : MonoBehaviour
         agent.destination = goal.position;
         GetComponent<Animation>()["Z_Walk"].wrapMode = WrapMode.Loop;
         GetComponent<Animation>().Play("Z_Walk");
+
     }
 
     private void Update()
@@ -25,6 +28,7 @@ public class zombieScript : MonoBehaviour
     void OnTriggerEnter(Collider col)
     {
         Debug.Log("traafienie!");
+        AudioSource.PlayClipAtPoint(deathSound, this.transform.position);
         //first disable the zombie's collider so multiple collisions cannot occur
         GetComponent<CapsuleCollider>().enabled = false;
         //destroy the bullet
@@ -69,6 +73,7 @@ public class zombieScript : MonoBehaviour
         GetComponent<Animation>()["Z_Walk"].wrapMode = WrapMode.Loop;
         GetComponent<Animation>().Play("Z_Walk");
         GetComponent<CapsuleCollider>().enabled = true;
+        AudioSource.PlayClipAtPoint(respawnSound, this.transform.position);
         agent.enabled = true;
     }
 
