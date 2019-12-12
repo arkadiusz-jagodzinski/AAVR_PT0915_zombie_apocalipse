@@ -59,6 +59,10 @@ public class PlayerControll : MonoBehaviour
             {
                 side = -1;
             }
+            if (Input.GetKey(KeyCode.Space))
+            {
+                moveDirection.y = jumpSpeed;
+            }
             moveDirection = new Vector3(side, 0.0f, forward);
             moveDirection *= speed;
             Quaternion rotation = Quaternion.Euler(0, cameraTransform.localEulerAngles.y*2, 0);
