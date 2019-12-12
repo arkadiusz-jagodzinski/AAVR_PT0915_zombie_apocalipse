@@ -33,13 +33,33 @@ public class PlayerControll : MonoBehaviour
     {
         // nie mam kuraw zielonego pojecia dlaczego tutaj musi byc cameraTransform.localEulerAngles.y a obrocie wektora ruchu cameraTransform.localEulerAngles.y *2
         characterController.transform.localEulerAngles = new Vector3(0, cameraTransform.localEulerAngles.y, 0);
+
         
 
         if (characterController.isGrounded)
         {
-
-
+             
             moveDirection = new Vector3(Input.GetAxis("Horizontal") , 0.0f, Input.GetAxis("Vertical") );
+            int forward = 0;
+            int side = 0;
+
+            if (Input.GetKey(KeyCode.W))
+            {
+                forward = 1;
+            }
+            if (Input.GetKey(KeyCode.S))
+            {
+                forward = -1;
+            }
+            if (Input.GetKey(KeyCode.D))
+            {
+                side = 1;
+            }
+            if (Input.GetKey(KeyCode.A))
+            {
+                side = -1;
+            }
+            moveDirection = new Vector3(side, 0.0f, forward);
             moveDirection *= speed;
             Quaternion rotation = Quaternion.Euler(0, cameraTransform.localEulerAngles.y*2, 0);
             moveDirection = rotation * moveDirection;
