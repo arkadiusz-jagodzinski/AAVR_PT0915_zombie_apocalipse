@@ -70,8 +70,8 @@ public class zombieScript : MonoBehaviour
     {
         yield return new WaitForSeconds(3f);
         gameObject.transform.position = position;
-        GetComponent<Animation>()["Z_Walk"].wrapMode = WrapMode.Loop;
-        GetComponent<Animation>().Play("Z_Walk");
+        GetComponent<Animation>()["Z_Walk_InPlace"].wrapMode = WrapMode.Loop;
+        GetComponent<Animation>().Play("Z_Walk_InPlace");
         GetComponent<CapsuleCollider>().enabled = true;
         AudioSource.PlayClipAtPoint(respawnSound, this.transform.position);
         agent.enabled = true;
