@@ -63,7 +63,7 @@ public class PlayerControll : MonoBehaviour
             {
                 moveDirection.y = jumpSpeed;
             }
-            moveDirection = new Vector3(side, 0.0f, forward);
+            if(moveDirection.magnitude == 0.0)moveDirection = new Vector3(side, 0.0f, forward);
             moveDirection *= speed;
             Quaternion rotation = Quaternion.Euler(0, cameraTransform.localEulerAngles.y*2, 0);
             moveDirection = rotation * moveDirection;
