@@ -15,8 +15,8 @@ public class zombieScript : MonoBehaviour
         goal = Camera.main.transform;
         agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
         agent.destination = goal.position;
-        GetComponent<Animation>()["Z_Walk_InPlace"].wrapMode = WrapMode.Loop;
-        GetComponent<Animation>().Play("Z_Walk_InPlace");
+        GetComponent<Animation>()["Z_Walk"].wrapMode = WrapMode.Loop;
+        GetComponent<Animation>().Play("Z_Walk");
 
     }
 
