@@ -178,17 +178,47 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 3918206154143638371, guid: 3d138293e01dae14eaa995a6a287aff5,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
+    - target: {fileID: 1803796165, guid: 3d138293e01dae14eaa995a6a287aff5, type: 3}
+      propertyPath: m_Speed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1803796165, guid: 3d138293e01dae14eaa995a6a287aff5, type: 3}
+      propertyPath: m_AngularSpeed
+      value: 360
+      objectReference: {fileID: 0}
+    - target: {fileID: 1803796165, guid: 3d138293e01dae14eaa995a6a287aff5, type: 3}
+      propertyPath: m_Acceleration
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 1803796168, guid: 3d138293e01dae14eaa995a6a287aff5, type: 3}
+      propertyPath: zombieSounds
       value: 
-      objectReference: {fileID: 2100000, guid: 9fdb5531bdf185e448dd06dfa8192f8d, type: 2}
-    - target: {fileID: 3559980237771655366, guid: 3d138293e01dae14eaa995a6a287aff5,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
+      objectReference: {fileID: 8300000, guid: a0a594db2c3e74647b78597dfc26c0c2, type: 3}
+    - target: {fileID: 1803796168, guid: 3d138293e01dae14eaa995a6a287aff5, type: 3}
+      propertyPath: deathSound
       value: 
-      objectReference: {fileID: 2100000, guid: 9fdb5531bdf185e448dd06dfa8192f8d, type: 2}
-    - target: {fileID: 2721532764914367471, guid: 3d138293e01dae14eaa995a6a287aff5,
+      objectReference: {fileID: 8300000, guid: a82ba793a05ecdf4485457678c8e2836, type: 3}
+    - target: {fileID: 1803796168, guid: 3d138293e01dae14eaa995a6a287aff5, type: 3}
+      propertyPath: respawnSound
+      value: 
+      objectReference: {fileID: 8300000, guid: a739c5a203479d74fae953e109154a1a, type: 3}
+    - target: {fileID: 928418006160359192, guid: 3d138293e01dae14eaa995a6a287aff5,
+        type: 3}
+      propertyPath: m_PlayAutomatically
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 928418006160359192, guid: 3d138293e01dae14eaa995a6a287aff5,
+        type: 3}
+      propertyPath: m_Animations.Array.data[0]
+      value: 
+      objectReference: {fileID: -6257440219318784398, guid: 79969b20b5ba62e499ee433a4dd38701,
+        type: 3}
+    - target: {fileID: 928418006160359192, guid: 3d138293e01dae14eaa995a6a287aff5,
+        type: 3}
+      propertyPath: m_AnimatePhysics
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5084327463171297211, guid: 3d138293e01dae14eaa995a6a287aff5,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -213,7 +243,17 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 9fdb5531bdf185e448dd06dfa8192f8d, type: 2}
-    - target: {fileID: 5084327463171297211, guid: 3d138293e01dae14eaa995a6a287aff5,
+    - target: {fileID: 774011387358372638, guid: 3d138293e01dae14eaa995a6a287aff5,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9fdb5531bdf185e448dd06dfa8192f8d, type: 2}
+    - target: {fileID: 664572939847581852, guid: 3d138293e01dae14eaa995a6a287aff5,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9fdb5531bdf185e448dd06dfa8192f8d, type: 2}
+    - target: {fileID: 2527406182532888189, guid: 3d138293e01dae14eaa995a6a287aff5,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -223,12 +263,7 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 9fdb5531bdf185e448dd06dfa8192f8d, type: 2}
-    - target: {fileID: 774011387358372638, guid: 3d138293e01dae14eaa995a6a287aff5,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 9fdb5531bdf185e448dd06dfa8192f8d, type: 2}
-    - target: {fileID: 664572939847581852, guid: 3d138293e01dae14eaa995a6a287aff5,
+    - target: {fileID: 2721532764914367471, guid: 3d138293e01dae14eaa995a6a287aff5,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -243,28 +278,16 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 9fdb5531bdf185e448dd06dfa8192f8d, type: 2}
-    - target: {fileID: 2527406182532888189, guid: 3d138293e01dae14eaa995a6a287aff5,
+    - target: {fileID: 3559980237771655366, guid: 3d138293e01dae14eaa995a6a287aff5,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 9fdb5531bdf185e448dd06dfa8192f8d, type: 2}
-    - target: {fileID: 1803796168, guid: 3d138293e01dae14eaa995a6a287aff5, type: 3}
-      propertyPath: zombieSounds
-      value: 
-      objectReference: {fileID: 8300000, guid: a0a594db2c3e74647b78597dfc26c0c2, type: 3}
-    - target: {fileID: 1803796168, guid: 3d138293e01dae14eaa995a6a287aff5, type: 3}
-      propertyPath: deathSound
-      value: 
-      objectReference: {fileID: 8300000, guid: a82ba793a05ecdf4485457678c8e2836, type: 3}
-    - target: {fileID: 1803796168, guid: 3d138293e01dae14eaa995a6a287aff5, type: 3}
-      propertyPath: respawnSound
-      value: 
-      objectReference: {fileID: 8300000, guid: a739c5a203479d74fae953e109154a1a, type: 3}
-    - target: {fileID: 928418006160359192, guid: 3d138293e01dae14eaa995a6a287aff5,
+    - target: {fileID: 3918206154143638371, guid: 3d138293e01dae14eaa995a6a287aff5,
         type: 3}
-      propertyPath: m_PlayAutomatically
-      value: 1
-      objectReference: {fileID: 0}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9fdb5531bdf185e448dd06dfa8192f8d, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3d138293e01dae14eaa995a6a287aff5, type: 3}
 --- !u!1 &1004778740911541526 stripped
