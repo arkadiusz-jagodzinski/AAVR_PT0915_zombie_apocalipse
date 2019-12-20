@@ -60,7 +60,9 @@ public class zombieScript : MonoBehaviour
             randomZ = UnityEngine.Random.Range(-13f, 13f);
 
             position = new Vector3(randomX, constantY, randomZ);
+            Debug.Log("trying to respawn");
         }
+        Debug.Log("actually respawned");
         StartCoroutine(respawnZombie(position));
 
     }
