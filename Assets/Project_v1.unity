@@ -16642,6 +16642,107 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 192213381}
   m_Mesh: {fileID: 4300004, guid: fd75e63c14c4540438372a6844af68b6, type: 3}
+--- !u!1001 &196434390
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1004778740911541526, guid: 4e17d94b0efd46e40b67297f5216ccea,
+        type: 3}
+      propertyPath: m_Name
+      value: zombieZero
+      objectReference: {fileID: 0}
+    - target: {fileID: 4299505152663191301, guid: 4e17d94b0efd46e40b67297f5216ccea,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4299505152663191301, guid: 4e17d94b0efd46e40b67297f5216ccea,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4299505152663191301, guid: 4e17d94b0efd46e40b67297f5216ccea,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4299505152663191301, guid: 4e17d94b0efd46e40b67297f5216ccea,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4299505152663191301, guid: 4e17d94b0efd46e40b67297f5216ccea,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4299505152663191301, guid: 4e17d94b0efd46e40b67297f5216ccea,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4299505152663191301, guid: 4e17d94b0efd46e40b67297f5216ccea,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4299505152663191301, guid: 4e17d94b0efd46e40b67297f5216ccea,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4299505152663191301, guid: 4e17d94b0efd46e40b67297f5216ccea,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4299505152663191301, guid: 4e17d94b0efd46e40b67297f5216ccea,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4299505152663191301, guid: 4e17d94b0efd46e40b67297f5216ccea,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4798724521020916546, guid: 4e17d94b0efd46e40b67297f5216ccea,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7787946297373048333, guid: 4e17d94b0efd46e40b67297f5216ccea,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5654860626446025374, guid: 4e17d94b0efd46e40b67297f5216ccea,
+        type: 3}
+      propertyPath: m_Animations.Array.data[0]
+      value: 
+      objectReference: {fileID: -6257440219318784398, guid: 165698eac7ca81041ad603fc5a3afa55,
+        type: 3}
+    - target: {fileID: 5654860626446025374, guid: 4e17d94b0efd46e40b67297f5216ccea,
+        type: 3}
+      propertyPath: m_Animation
+      value: 
+      objectReference: {fileID: -6257440219318784398, guid: 3fa7045af54b82c47852949257d136c7,
+        type: 3}
+    - target: {fileID: 4798724521020916547, guid: 4e17d94b0efd46e40b67297f5216ccea,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4798724521020916558, guid: 4e17d94b0efd46e40b67297f5216ccea,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4e17d94b0efd46e40b67297f5216ccea, type: 3}
 --- !u!1001 &197768385
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -102879,6 +102980,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: zombie (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1004778740911541526, guid: 4e17d94b0efd46e40b67297f5216ccea,
+        type: 3}
+      propertyPath: m_TagString
+      value: zombie
       objectReference: {fileID: 0}
     - target: {fileID: 4299505152663191301, guid: 4e17d94b0efd46e40b67297f5216ccea,
         type: 3}
