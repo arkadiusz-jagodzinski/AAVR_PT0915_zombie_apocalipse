@@ -4,7 +4,7 @@ using UnityEngine;
 public class GameState
 {
     private static int zombiesCount = 2;
-    private static float zombieSpeed = 1.0f;
+    private static float zombieSpeed = 3.0f;
 
     private static readonly List<Vector3> respPoints = new List<Vector3>
     {
@@ -50,8 +50,8 @@ public class GameState
         newZombie.GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = true;
         newZombie.GetComponent<AudioSource>().enabled = true;
         newZombie.GetComponent<zombieScript>().enabled = true;
-        newZombie.GetComponent<Animation>()["Z_Walk_InPlace"].wrapMode = WrapMode.Loop;
-        newZombie.GetComponent<Animation>().Play("Z_Walk_InPlace");
+        newZombie.GetComponent<Animation>()["Z_Run_InPlace"].wrapMode = WrapMode.Loop;
+        newZombie.GetComponent<Animation>().Play("Z_Run_InPlace");
         newZombie.GetComponent<CapsuleCollider>().enabled = true;
 
         return newZombie;
