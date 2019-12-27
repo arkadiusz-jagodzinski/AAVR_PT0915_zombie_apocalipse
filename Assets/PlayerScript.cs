@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerScript : MonoBehaviour
 {
@@ -9,11 +10,13 @@ public class PlayerScript : MonoBehaviour
     private GameObject spawnPoint;
 
     private IEnumerator coroutine;
+    public Text AmmoText;
 
     void Start()
     {
         gun = gameObject.transform.GetChild(0).gameObject;
         spawnPoint = gun.transform.GetChild(0).gameObject;
+        AmmoText.text = "11";
     }
 
     public IEnumerator Shoot()
