@@ -12,15 +12,33 @@ public class PlayerScript : MonoBehaviour
     private IEnumerator coroutine;
     public Text AmmoText;
 
+    public int maxAmmo = 20;
+    private int currentAmmo;
+
+    private bool hasAmmo() {
+        return currentAmmo > 0;
+    }
+
     void Start()
     {
         gun = gameObject.transform.GetChild(0).gameObject;
         spawnPoint = gun.transform.GetChild(0).gameObject;
-        AmmoText.text = "11";
+        currentAmmo = maxAmmo; 
+        AmmoText.text = currentAmmo.ToString();
+    }
+
+    public IEnumerator Reload(){
+        currentAmmo = maxAmmo;
     }
 
     public IEnumerator Shoot()
     {
+        if(!hasAmmo())
+            yield break;
+
+        currentAmmo--;
+        AmmoText.text = currentAmmo.ToString(); 
+        
         GameObject bullet = Instantiate(Resources.Load("bullet", typeof(GameObject))) as GameObject;
 
         //Get the bullet's rigid body component and set its position and rotation equal to that of the spawnPoint
