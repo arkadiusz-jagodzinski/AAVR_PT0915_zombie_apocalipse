@@ -13,6 +13,7 @@ public class PlayerScript : MonoBehaviour
     public Text AmmoText;
     AudioSource shoot;
     AudioSource reload;
+    AudioSource gun_empty;
 
     public int maxAmmo = 20;
     private int currentAmmo;
@@ -29,6 +30,7 @@ public class PlayerScript : MonoBehaviour
         var asources = GetComponents<AudioSource>();
         shoot = asources[0];
         reload = asources[1];
+        gun_empty = asources[2];
     }
 
     private void loadGameObjects(){
@@ -54,8 +56,10 @@ public class PlayerScript : MonoBehaviour
 
     public IEnumerator Shoot()
     {
-        if(!hasAmmo())
+        if(!hasAmmo()){
+            gun_empty.Play();
             yield break;
+        }
 
         currentAmmo--;
         updateAmmoHud();
