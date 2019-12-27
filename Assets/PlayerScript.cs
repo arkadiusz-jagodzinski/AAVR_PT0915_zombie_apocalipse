@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerScript : MonoBehaviour
 {
@@ -9,15 +10,60 @@ public class PlayerScript : MonoBehaviour
     private GameObject spawnPoint;
 
     private IEnumerator coroutine;
+    public Text AmmoText;
+    AudioSource shoot;
+    AudioSource reload;
+    AudioSource gun_empty;
 
-    void Start()
-    {
+    public int maxAmmo = 20;
+    private int currentAmmo;
+
+    private void updateAmmoHud() {
+        AmmoText.text = currentAmmo.ToString();
+    }
+
+    private bool hasAmmo() {
+        return currentAmmo > 0;
+    }
+
+    private void loadAudio(){
+        var asources = GetComponents<AudioSource>();
+        shoot = asources[0];
+        reload = asources[1];
+        gun_empty = asources[2];
+    }
+
+    private void loadGameObjects(){
         gun = gameObject.transform.GetChild(0).gameObject;
         spawnPoint = gun.transform.GetChild(0).gameObject;
     }
 
+    void Start()
+    {
+        loadGameObjects();
+        loadAudio();    
+        currentAmmo = maxAmmo; 
+        updateAmmoHud();
+    }
+
+    public IEnumerator Reload(){
+        currentAmmo = maxAmmo;
+        gun.GetComponent<Animation>().Play("gun_reload");
+        reload.Play();
+        updateAmmoHud();
+        yield break;
+    }
+
     public IEnumerator Shoot()
     {
+        if(!hasAmmo()){
+            gun_empty.Play();
+            yield break;
+        }
+
+        currentAmmo--;
+        updateAmmoHud();
+
         GameObject bullet = Instantiate(Resources.Load("bullet", typeof(GameObject))) as GameObject;
 
         //Get the bullet's rigid body component and set its position and rotation equal to that of the spawnPoint
@@ -28,8 +74,8 @@ public class PlayerScript : MonoBehaviour
         //add force to the bullet in the direction of the spawnPoint's forward vector
         rb.AddForce(spawnPoint.transform.forward * 500f);
 
-        GetComponent<AudioSource>().Play();
-        gun.GetComponent<Animation>().Play();
+        shoot.Play();
+        gun.GetComponent<Animation>().Play("gun");
 
         Destroy(bullet, 1);
 
