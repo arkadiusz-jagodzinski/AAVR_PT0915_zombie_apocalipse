@@ -7,8 +7,8 @@ public class PlayerControll : MonoBehaviour
     PlayerScript playerScript;
     Transform playerTransform;
     Transform cameraTransform;
+    GameState gameState;
 
-    public static float speed = 6.0f;
     public float jumpSpeed = 8.0f;
     public float gravity = 20.0f;
     private bool isShotingBlocked;
@@ -64,7 +64,7 @@ public class PlayerControll : MonoBehaviour
                 moveDirection.y = jumpSpeed;
             }
             if(moveDirection.magnitude == 0.0)moveDirection = new Vector3(side, 0.0f, forward);
-            moveDirection *= speed;
+            moveDirection *= GameState.walkingSpeed;
             Quaternion rotation = Quaternion.Euler(0, cameraTransform.localEulerAngles.y*2, 0);
             moveDirection = rotation * moveDirection;
 

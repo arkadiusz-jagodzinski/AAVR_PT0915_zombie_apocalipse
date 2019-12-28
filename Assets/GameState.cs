@@ -4,7 +4,8 @@ using UnityEngine;
 public class GameState
 {
     private static int zombiesCount = 2;
-    private static float zombieSpeed = 3.0f;
+    public static float zombieSpeed = 3.0f;
+    public static float walkingSpeed = 6.0f;
 
     private static readonly List<Vector3> zombieRespPoints = new List<Vector3>
     {
@@ -45,16 +46,10 @@ public class GameState
         return zombiesCount;
     }
 
-    public float getZombieSpeed()
-    {
-        return zombieSpeed;
-    }
-
-
     public GameObject respNewZombie()
     {
         zombiesCount++;
-        return respNewZombie();
+        return respZombie();
     }
 
     public GameObject respZombie()

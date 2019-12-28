@@ -25,7 +25,7 @@ public class powerUpScript : MonoBehaviour
         if (col.tag.Equals("Player") && !isActivated)
         {
             isActivated = true;
-            PlayerControll.speed *= SPEED_BOOST;
+            GameState.walkingSpeed *= SPEED_BOOST;
             Debug.Log("PowerUp zebrany!");
             renderer.enabled = false;
             Invoke("disablingSpeedUp", SPEED_UP_LENGTH);
@@ -35,7 +35,7 @@ public class powerUpScript : MonoBehaviour
 
     void disablingSpeedUp()
     {
-        PlayerControll.speed /= SPEED_BOOST;
+        GameState.walkingSpeed /= SPEED_BOOST;
         GameObject.Destroy(this.gameObject);
     }
 }

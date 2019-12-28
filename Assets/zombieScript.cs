@@ -27,7 +27,7 @@ public class zombieScript : MonoBehaviour
         if (agent.enabled)
         {
             agent.destination = goal.position;
-            agent.speed = GameState.getGameState().getZombieSpeed();
+            agent.speed = GameState.zombieSpeed;
             agent.destination = goal.position;
 
             if (agent.remainingDistance != 0 && agent.remainingDistance < 3.1)
