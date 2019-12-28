@@ -73,13 +73,17 @@ public class PlayerControll : MonoBehaviour
                 moveDirection.y = jumpSpeed;
 
             }
-            if ((Input.GetButton("Fire3") || Input.GetButton("Fire1")) && !isShotingBlocked)
+            if ( Input.GetButton("Fire1") && !isShotingBlocked)
             {
                 Debug.Log("Strzał!");
                 StartCoroutine(playerScript.Shoot());
                 isShotingBlocked = true;
                 StartCoroutine(blockShoting());
 
+            }
+            if (Input.GetKey(KeyCode.R) || Input.GetButton("Fire3"))
+            {
+                StartCoroutine(playerScript.Reload());
             }
         }
 
