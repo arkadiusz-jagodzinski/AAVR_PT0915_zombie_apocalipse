@@ -3,6 +3,8 @@ using System.Collections;
 
 public class zombieScript : MonoBehaviour
 {
+    private float timer = 0;
+    private float timerAtack = 0;
     private Transform goal;
     private UnityEngine.AI.NavMeshAgent agent;
     public AudioClip deathSound;
@@ -24,6 +26,7 @@ public class zombieScript : MonoBehaviour
 
     private void Update()
     {
+        timer += Time.deltaTime;
         if (agent.enabled)
         {
             agent.destination = goal.position;
@@ -32,8 +35,15 @@ public class zombieScript : MonoBehaviour
 
             if (agent.remainingDistance != 0 && agent.remainingDistance < 3.1)
             {
+                if (!isAttack)
+                    timerAtack = timer;
                 isAttack = true;
                 this.attack();
+                if(timerAtack + 1 < timer)
+                {
+                    HealthBarScript.Health -= 10f;
+                    isAttack = false;
+                }
             }
             else
             {
@@ -55,7 +65,7 @@ public class zombieScript : MonoBehaviour
     {
         if (col.name == "Player")
         {
-
+            HealthBarScript.Health -= 10f;
         }
         else
         {
