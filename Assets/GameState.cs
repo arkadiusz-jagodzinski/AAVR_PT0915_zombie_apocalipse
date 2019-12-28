@@ -6,8 +6,22 @@ public class GameState
     private static int zombiesCount = 2;
     private static float zombieSpeed = 3.0f;
 
-    private static readonly List<Vector3> respPoints = new List<Vector3>
+    private static readonly List<Vector3> zombieRespPoints = new List<Vector3>
     {
+        new Vector3(-15,0,2),
+        new Vector3(-15,0,-10),
+        new Vector3(15,0,-10),
+        new Vector3(4,11,-33),
+        new Vector3(10,11,-6),
+        new Vector3(33,5,-17)
+    };
+
+    private static readonly List<Vector3> powerUpsRespPoints = new List<Vector3>
+    {
+        new Vector3(1,0,0),
+        new Vector3(1,0,-20),
+        new Vector3(4,11,-28),
+        new Vector3(42,5,-22),
         new Vector3(-15,0,2),
         new Vector3(-15,0,-10),
         new Vector3(15,0,-10),
@@ -46,7 +60,7 @@ public class GameState
     public GameObject respZombie()
     {
         GameObject newZombie = Object.Instantiate(GameObject.Find("zombieZero"));
-        newZombie.GetComponent<Transform>().position = getRandomRespPosition();
+        newZombie.GetComponent<Transform>().position = getRandomZombieRespPosition();
         newZombie.GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = true;
         newZombie.GetComponent<AudioSource>().enabled = true;
         newZombie.GetComponent<zombieScript>().enabled = true;
@@ -57,8 +71,22 @@ public class GameState
         return newZombie;
     }
 
-    private Vector3 getRandomRespPosition()
+    public GameObject respNewPowerUp()
     {
-        return respPoints[Random.Range(0, respPoints.Count)];
+        GameObject newPowerUp = Object.Instantiate(GameObject.Find("powerupZero"));
+        newPowerUp.GetComponent<Transform>().position = getRandomPowerUpRespPosition();
+        newPowerUp.GetComponent<powerUpScript>().enabled = true;
+        Debug.Log("Nowy powerUp!");
+        return newPowerUp;
+    }
+
+    private Vector3 getRandomZombieRespPosition()
+    {
+        return zombieRespPoints[Random.Range(0, zombieRespPoints.Count)];
+    }
+
+    private Vector3 getRandomPowerUpRespPosition()
+    {
+        return powerUpsRespPoints[Random.Range(0, powerUpsRespPoints.Count)];
     }
 }

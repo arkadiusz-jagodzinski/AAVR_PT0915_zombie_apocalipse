@@ -8,7 +8,7 @@ public class PlayerControll : MonoBehaviour
     Transform playerTransform;
     Transform cameraTransform;
 
-    public float speed = 6.0f;
+    public static float speed = 6.0f;
     public float jumpSpeed = 8.0f;
     public float gravity = 20.0f;
     private bool isShotingBlocked;

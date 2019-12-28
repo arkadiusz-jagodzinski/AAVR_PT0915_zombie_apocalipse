@@ -53,7 +53,6 @@ public class zombieScript : MonoBehaviour
     //for this to work both need colliders, one must have rigid body, and the zombie must have is trigger checked.
     void OnTriggerEnter(Collider col)
     {
-        Debug.Log(col.name);
         if (col.name == "Player")
         {
 
