@@ -202,6 +202,10 @@ PrefabInstance:
       propertyPath: respawnSound
       value: 
       objectReference: {fileID: 8300000, guid: a739c5a203479d74fae953e109154a1a, type: 3}
+    - target: {fileID: 1803796168, guid: 3d138293e01dae14eaa995a6a287aff5, type: 3}
+      propertyPath: hitSound
+      value: 
+      objectReference: {fileID: 8300000, guid: cc3443579ad7bc042932a155f069e09f, type: 3}
     - target: {fileID: 928418006160359192, guid: 3d138293e01dae14eaa995a6a287aff5,
         type: 3}
       propertyPath: m_PlayAutomatically

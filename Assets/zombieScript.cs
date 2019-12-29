@@ -8,6 +8,7 @@ public class zombieScript : MonoBehaviour
     private Transform goal;
     private UnityEngine.AI.NavMeshAgent agent;
     public AudioClip deathSound;
+    public AudioClip hitSound;
     public AudioClip respawnSound;
     private bool isAttack = false;
     private bool isDeath = false;
@@ -41,6 +42,7 @@ public class zombieScript : MonoBehaviour
                 this.attack();
                 if(timerAtack + 1 < timer)
                 {
+                    AudioSource.PlayClipAtPoint(hitSound, this.transform.position);
                     HealthBarScript.Health -= 10f;
                     isAttack = false;
                 }
@@ -57,10 +59,12 @@ public class zombieScript : MonoBehaviour
     }
     public void attack()
     {
-        if (isAttack)
-            GetComponent<Animation>().Play("Z_Attack");
+        if (isAttack){
+           GetComponent<Animation>().Play("Z_Attack");
+           
+        }
     }
-    
+
     void OnTriggerEnter(Collider col)
     {
         if (col.name == "Player")
