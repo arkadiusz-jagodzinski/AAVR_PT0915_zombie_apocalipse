@@ -70,7 +70,6 @@ public class GameState
     {
         GameObject newPowerUp = Object.Instantiate(GameObject.Find("powerupZero"));
         newPowerUp.GetComponent<Transform>().position = getRandomPowerUpRespPosition();
-        newPowerUp.GetComponent<powerUpScript>().enabled = true;
         Debug.Log("Nowy powerUp!");
         return newPowerUp;
     }

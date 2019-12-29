@@ -4,30 +4,26 @@ using UnityEngine;
 
 public class powerUpScript : MonoBehaviour
 {
-    public static float SPEED_BOOST = 3;
+    public static float SPEED_BOOST = (float) 1.5;
     public static int SPEED_UP_LENGTH = 5;
-    private MeshRenderer renderer;
-    private bool isActivated = false;
-    // Start is called before the first frame update
+    public AudioClip activationSound;
+    
     void Start()
     {
-        renderer = GetComponent<MeshRenderer>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-
     }
 
     void OnTriggerEnter(Collider col)
     {
-        if (col.tag.Equals("Player") && !isActivated)
+        if (col.tag.Equals("Player"))
         {
-            isActivated = true;
-            GameState.walkingSpeed *= SPEED_BOOST;
             Debug.Log("PowerUp zebrany!");
-            renderer.enabled = false;
+            AudioSource.PlayClipAtPoint(activationSound, this.transform.position);
+            this.gameObject.GetComponent<Transform>().position = new Vector3(0,0,-222);
+            GameState.walkingSpeed *= SPEED_BOOST;
             Invoke("disablingSpeedUp", SPEED_UP_LENGTH);
             
         }
@@ -36,6 +32,5 @@ public class powerUpScript : MonoBehaviour
     void disablingSpeedUp()
     {
         GameState.walkingSpeed /= SPEED_BOOST;
-        GameObject.Destroy(this.gameObject);
     }
 }

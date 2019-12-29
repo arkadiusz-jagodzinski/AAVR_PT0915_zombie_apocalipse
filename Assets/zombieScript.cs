@@ -60,7 +60,7 @@ public class zombieScript : MonoBehaviour
         if (isAttack)
             GetComponent<Animation>().Play("Z_Attack");
     }
-    //for this to work both need colliders, one must have rigid body, and the zombie must have is trigger checked.
+    
     void OnTriggerEnter(Collider col)
     {
         if (col.name == "Player")
@@ -72,18 +72,12 @@ public class zombieScript : MonoBehaviour
             Debug.Log("traafienie!");
             isDeath = true;
             AudioSource.PlayClipAtPoint(deathSound, this.transform.position);
-            //first disable the zombie's collider so multiple collisions cannot occur
             GetComponent<CapsuleCollider>().enabled = false;
-            //destroy the bullet
             Destroy(col.gameObject);
-            //stop the zombie from moving forward by setting its destination to it's current position
             agent.enabled = false;
-            //stop the walking animation and play the falling back animation
             GetComponent<Animation>().Stop();
             GetComponent<Animation>().Play("Z_FallingBack");
-            //destroy this zombie in six seconds.
             Destroy(gameObject, 6);
-            //instantiate a new zombie
             StartCoroutine(respawnZombie());
         }
     }
