@@ -10,8 +10,8 @@ public class zombieScript : MonoBehaviour
     public AudioClip deathSound;
     public AudioClip hitSound;
     public AudioClip respawnSound;
-    private bool isAttack = false;
-    private bool isDeath = false;
+    private bool isAttacking = false;
+    private bool zombieDead = false;
 
     void Start()
     {
@@ -34,35 +34,33 @@ public class zombieScript : MonoBehaviour
             agent.speed = GameState.zombieSpeed;
             agent.destination = goal.position;
 
-            if (agent.remainingDistance != 0 && agent.remainingDistance < 3.1)
-            {
-                if (!isAttack)
-                    timerAtack = timer;
-                isAttack = true;
-                this.attack();
-                if(timerAtack + 1 < timer)
+            if (agent.remainingDistance < 3.1 && agent.remainingDistance != 0 && Mathf.Infinity != agent.remainingDistance)
+            {                
+                if (!isAttacking){
+                    this.attack();
+                    isAttacking = true;
+                }
+                    
+                if(timerAtack + 0.5 < timer)
                 {
-                    AudioSource.PlayClipAtPoint(hitSound, this.transform.position);
-                    HealthBarScript.Health -= 10f;
-                    isAttack = false;
+                     Debug.Log("stop attacking");
+                    isAttacking = false;
                 }
             }
             else
             {
-                isAttack = false;
-                if (!isDeath)
+                isAttacking = false;
+                if (!zombieDead)
                     GetComponent<Animation>().Play("Z_Run_InPlace");
             }
-            //Debug.Log(agent.remainingDistance);
-
         }
     }
     public void attack()
     {
-        if (isAttack){
-           GetComponent<Animation>().Play("Z_Attack");
-           
-        }
+        timerAtack = timer;
+        AudioSource.PlayClipAtPoint(hitSound, this.transform.position);
+        GetComponent<Animation>().Play("Z_Attack");
+        HealthBarScript.Health -= 10f;
     }
 
     void OnTriggerEnter(Collider col)
@@ -74,7 +72,7 @@ public class zombieScript : MonoBehaviour
         else
         {
             Debug.Log("traafienie!");
-            isDeath = true;
+            zombieDead = true;
             AudioSource.PlayClipAtPoint(deathSound, this.transform.position);
             GetComponent<CapsuleCollider>().enabled = false;
             Destroy(col.gameObject);
@@ -90,7 +88,7 @@ public class zombieScript : MonoBehaviour
     IEnumerator respawnZombie()
     {
         yield return new WaitForSeconds(3f);
-        isDeath = false;
+        zombieDead = false;
         GameObject zombie = GameState.getGameState().respZombie();
         AudioSource.PlayClipAtPoint(respawnSound, zombie.transform.position);
         zombie.GetComponent<zombieScript>().Start();
