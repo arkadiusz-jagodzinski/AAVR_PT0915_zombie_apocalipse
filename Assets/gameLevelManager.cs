@@ -4,15 +4,52 @@ using UnityEngine;
 
 public class gameLevelManager : MonoBehaviour
 {
-    public static bool isIncreasingLevelEnabled = true;
-    public static float zombieSpeedIncrease = 0.1f;
-    public static int zombieSpeedIncreasePeriod = 8;
+    private static bool isIncreasingLevelEnabled = true;
+    private static float zombieSpeedIncrease = 0.2f;
+    private static int zombieSpeedIncreasePeriod = 8;
 
-    public static bool isIncrementingZombieNumberEnabled = true;
-    public static int zombieNumberIncrementPeriod = 20;
+    private static bool isIncrementingZombieNumberEnabled = true;
+    private static int zombieNumberIncrementPeriod = 20;
+
+    public static void seTutorialDifficulty()
+    {
+        isIncreasingLevelEnabled = false;
+        isIncrementingZombieNumberEnabled = false;
+    }
+
+    public static void setEasyDifficulty()
+    {
+        isIncreasingLevelEnabled = false;
+        isIncrementingZombieNumberEnabled = true;
+        zombieNumberIncrementPeriod = 60;
+    }
+
+    public static void setMediumDifficulty()
+    {
+        isIncreasingLevelEnabled = true;
+        isIncrementingZombieNumberEnabled = true;
+        zombieNumberIncrementPeriod = 45;
+        zombieSpeedIncreasePeriod = 20;
+    }
+
+    public static void setHardDifficulty()
+    {
+        isIncreasingLevelEnabled = true;
+        isIncrementingZombieNumberEnabled = true;
+        zombieNumberIncrementPeriod = 30;
+        zombieSpeedIncreasePeriod = 15;
+    }
+
+    public static void setInsaneDifficulty()
+    {
+        isIncreasingLevelEnabled = true;
+        isIncrementingZombieNumberEnabled = true;
+        zombieNumberIncrementPeriod = 25;
+        zombieSpeedIncreasePeriod = 10;
+    }
 
 
-    
+
     private GameState gameState;
     void Start()
     {
