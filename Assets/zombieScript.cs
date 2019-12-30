@@ -12,6 +12,7 @@ public class zombieScript : MonoBehaviour
     public AudioClip respawnSound;
     private bool isAttacking = false;
     private bool zombieDead = false;
+    
 
     void Start()
     {
@@ -22,6 +23,12 @@ public class zombieScript : MonoBehaviour
         agent.destination = goal.position;
         GetComponent<Animation>()["Z_Run_InPlace"].wrapMode = WrapMode.Loop;
         GetComponent<Animation>().Play("Z_Run_InPlace");
+        var asources = GetComponents<AudioSource>();
+        var zombieNoise = asources[0];
+        zombieNoise.loop = true;
+        
+        zombieNoise.Play();
+            
 
     }
 
@@ -61,6 +68,9 @@ public class zombieScript : MonoBehaviour
         timerAtack = timer;
         AudioSource.PlayClipAtPoint(hitSound, this.transform.position);
         GetComponent<Animation>().Play("Z_Attack");
+        var asources = GetComponents<AudioSource>();
+        var hit = asources[1];
+        hit.Play();
         HealthBarScript.Health -= 10f;
     }
 
@@ -79,6 +89,11 @@ public class zombieScript : MonoBehaviour
             Destroy(col.gameObject);
             agent.enabled = false;
             GetComponent<Animation>().Stop();
+            var asources = GetComponents<AudioSource>();
+            var zombieNoise = asources[0];
+            zombieNoise.loop = false;
+            zombieNoise.Stop();
+            zombieNoise.loop = false;
             GetComponent<Animation>().Play("Z_FallingBack");
             Destroy(gameObject, 6);
             StartCoroutine(respawnZombie());
