@@ -34,4 +34,22 @@ public class MainMenu : MonoBehaviour
         }
         DifficultyButtonText.text = newText;
     }
+
+    public void Update(){
+    if(Input.GetButtonDown("Fire1"))
+        {
+            PlayGame();
+        }
+    
+    if(Input.GetButtonDown("Fire2"))
+        {
+            //TODO: actually change diffficulty in game scene
+            ChangeDifficultyText();
+        }
+    
+    if(Input.GetButtonDown("Fire3"))
+        {
+            QuitGame();
+        }
+    }
 }
