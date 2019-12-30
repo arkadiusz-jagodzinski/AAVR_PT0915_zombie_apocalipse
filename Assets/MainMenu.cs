@@ -12,6 +12,7 @@ public class MainMenu : MonoBehaviour
 
     public void PlayGame()
     {
+        Debug.Log("PlayGame()");
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
@@ -38,17 +39,20 @@ public class MainMenu : MonoBehaviour
     public void Update(){
     if(Input.GetButtonDown("Fire1"))
         {
-            PlayGame();
+            Debug.Log("fire1");
+            // PlayGame();
         }
     
     if(Input.GetButtonDown("Fire2"))
         {
             //TODO: actually change diffficulty in game scene
+            Debug.Log("fire2");
             ChangeDifficultyText();
         }
     
     if(Input.GetButtonDown("Fire3"))
         {
+            Debug.Log("fire3");
             QuitGame();
         }
     }
