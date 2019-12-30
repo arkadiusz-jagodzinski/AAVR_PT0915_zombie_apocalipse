@@ -11,7 +11,7 @@ public class gameLevelManager : MonoBehaviour
     private static bool isIncrementingZombieNumberEnabled = true;
     private static int zombieNumberIncrementPeriod = 20;
 
-    public static void seTutorialDifficulty()
+    public static void setTutorialDifficulty()
     {
         isIncreasingLevelEnabled = false;
         isIncrementingZombieNumberEnabled = false;
