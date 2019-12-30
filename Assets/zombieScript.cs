@@ -43,16 +43,17 @@ public class zombieScript : MonoBehaviour
                     
                 if(timerAtack + 0.5 < timer)
                 {
-                     Debug.Log("stop attacking");
                     isAttacking = false;
                 }
             }
             else
             {
-                isAttacking = false;
                 if (!zombieDead)
                     GetComponent<Animation>().Play("Z_Run_InPlace");
             }
+        }
+        if(zombieDead){
+            isAttacking = false;
         }
     }
     public void attack()
