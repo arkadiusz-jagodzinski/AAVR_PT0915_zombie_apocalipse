@@ -19,8 +19,15 @@ public class PlayerScript : MonoBehaviour
 
     public int maxAmmo = 20;
     private int currentAmmo;
+    private bool isShotingBlocked;
 
     public event EventHandler GameOverEvent;
+
+    IEnumerator blockShoting()
+    {
+        yield return new WaitForSeconds(1f);
+        isShotingBlocked = false;
+    }
 
     private void OnGameOver()
     {
@@ -68,6 +75,9 @@ public class PlayerScript : MonoBehaviour
 
     public IEnumerator Shoot()
     {
+        if(isShotingBlocked)
+            yield break;
+
         if(!hasAmmo()){
             gun_empty.Play();
             yield break;
@@ -90,8 +100,9 @@ public class PlayerScript : MonoBehaviour
         gun.GetComponent<Animation>().Play("gun");
 
         Destroy(bullet, 1);
-
-        yield return new WaitForSeconds(1f);
+        
+        isShotingBlocked = true;
+        yield return StartCoroutine(blockShoting());
     }
 
     void Update()

@@ -11,13 +11,6 @@ public class PlayerControll : MonoBehaviour
 
     public float jumpSpeed = 8.0f;
     public float gravity = 20.0f;
-    private bool isShotingBlocked;
-
-    IEnumerator blockShoting()
-    {
-        yield return new WaitForSeconds(1f);
-        isShotingBlocked = false;
-    }
 
     private Vector3 moveDirection = Vector3.zero;
 
@@ -73,13 +66,10 @@ public class PlayerControll : MonoBehaviour
                 moveDirection.y = jumpSpeed;
 
             }
-            if ( Input.GetButton("Fire1") && !isShotingBlocked)
+            if ( Input.GetButton("Fire1"))
             {
                 Debug.Log("Strzał!");
                 StartCoroutine(playerScript.Shoot());
-                isShotingBlocked = true;
-                StartCoroutine(blockShoting());
-
             }
             if (Input.GetKey(KeyCode.R) || Input.GetButton("Fire3"))
             {
