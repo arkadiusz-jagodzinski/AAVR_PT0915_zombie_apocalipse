@@ -7,6 +7,7 @@ public class zombieScript : MonoBehaviour
     private float timerAtack = 0;
     private Transform goal;
     private UnityEngine.AI.NavMeshAgent agent;
+    public float zombieDmg = 5f;
     public AudioClip deathSound;
     public AudioClip hitSound;
     public AudioClip respawnSound;
@@ -71,14 +72,14 @@ public class zombieScript : MonoBehaviour
         var asources = GetComponents<AudioSource>();
         var hit = asources[1];
         hit.Play();
-        HealthBarScript.Health -= 10f;
+        HealthBarScript.Health -= zombieDmg;
     }
 
     void OnTriggerEnter(Collider col)
     {
         if (col.name == "Player")
         {
-            HealthBarScript.Health -= 10f;
+            HealthBarScript.Health -= zombieDmg;
         }
         else
         {

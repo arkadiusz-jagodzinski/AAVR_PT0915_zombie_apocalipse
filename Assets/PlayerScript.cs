@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -14,9 +15,18 @@ public class PlayerScript : MonoBehaviour
     AudioSource shoot;
     AudioSource reload;
     AudioSource gun_empty;
+    AudioSource audioSource;
 
     public int maxAmmo = 20;
     private int currentAmmo;
+
+    public event EventHandler GameOverEvent;
+
+    private void OnGameOver()
+    {
+        if (GameOverEvent != null)
+            GameOverEvent(this, EventArgs.Empty);
+    }
 
     private void updateAmmoHud() {
         AmmoText.text = currentAmmo.ToString();
@@ -40,6 +50,8 @@ public class PlayerScript : MonoBehaviour
 
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
+        Time.timeScale = 1;
         loadGameObjects();
         loadAudio();    
         currentAmmo = maxAmmo; 
@@ -85,5 +97,12 @@ public class PlayerScript : MonoBehaviour
     void Update()
     {
         Debug.DrawRay(spawnPoint.transform.position, spawnPoint.transform.forward, Color.green);
+        if (HealthBarScript.Health < 1)
+        {
+            OnGameOver();
+            Time.timeScale = 0;
+            audioSource.mute = true;
+        }
+           
     }
 }
