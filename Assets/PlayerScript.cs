@@ -18,6 +18,7 @@ public class PlayerScript : MonoBehaviour
     AudioSource audioSource;
 
     public int maxAmmo = 20;
+    public float empty_ammo_block_time_sec = 0.3f;
     private int currentAmmo;
     private bool isShotingBlocked;
 
@@ -80,6 +81,7 @@ public class PlayerScript : MonoBehaviour
 
         if(!hasAmmo()){
             gun_empty.Play();
+            StartCoroutine(blockShoting(empty_ammo_block_time_sec));
             yield break;
         }
 
