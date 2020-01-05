@@ -23,9 +23,9 @@ public class PlayerScript : MonoBehaviour
 
     public event EventHandler GameOverEvent;
 
-    IEnumerator blockShoting()
+    IEnumerator blockShoting(float sec)
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(sec);
         isShotingBlocked = false;
     }
 
@@ -102,7 +102,7 @@ public class PlayerScript : MonoBehaviour
         Destroy(bullet, 1);
         
         isShotingBlocked = true;
-        yield return StartCoroutine(blockShoting());
+        yield return StartCoroutine(blockShoting(1f));
     }
 
     void Update()
