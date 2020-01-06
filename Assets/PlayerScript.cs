@@ -18,9 +18,19 @@ public class PlayerScript : MonoBehaviour
     AudioSource audioSource;
 
     public int maxAmmo = 20;
+    public float empty_ammo_block_time_sec = 0.3f;
+    public float reload_block_time_sec = 0.9f;
     private int currentAmmo;
+    private bool isShotingBlocked;
 
     public event EventHandler GameOverEvent;
+
+    IEnumerator blockShoting(float sec)
+    {
+        isShotingBlocked = true;
+        yield return new WaitForSeconds(sec);
+        isShotingBlocked = false;
+    }
 
     private void OnGameOver()
     {
@@ -59,17 +69,24 @@ public class PlayerScript : MonoBehaviour
     }
 
     public IEnumerator Reload(){
+        if(isShotingBlocked)
+            yield break;
+
         currentAmmo = maxAmmo;
         gun.GetComponent<Animation>().Play("gun_reload");
         reload.Play();
         updateAmmoHud();
-        yield break;
+        yield return StartCoroutine(blockShoting(reload_block_time_sec));
     }
 
     public IEnumerator Shoot()
     {
+        if(isShotingBlocked)
+            yield break;
+
         if(!hasAmmo()){
             gun_empty.Play();
+            StartCoroutine(blockShoting(empty_ammo_block_time_sec));
             yield break;
         }
 
@@ -90,8 +107,8 @@ public class PlayerScript : MonoBehaviour
         gun.GetComponent<Animation>().Play("gun");
 
         Destroy(bullet, 1);
-
-        yield return new WaitForSeconds(1f);
+        
+        yield return StartCoroutine(blockShoting(1f));
     }
 
     void Update()
