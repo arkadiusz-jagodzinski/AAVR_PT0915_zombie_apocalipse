@@ -27,6 +27,7 @@ public class PlayerScript : MonoBehaviour
 
     IEnumerator blockShoting(float sec)
     {
+        isShotingBlocked = true;
         yield return new WaitForSeconds(sec);
         isShotingBlocked = false;
     }
@@ -71,7 +72,6 @@ public class PlayerScript : MonoBehaviour
         if(isShotingBlocked)
             yield break;
 
-        isShotingBlocked = true;
         currentAmmo = maxAmmo;
         gun.GetComponent<Animation>().Play("gun_reload");
         reload.Play();
@@ -108,7 +108,6 @@ public class PlayerScript : MonoBehaviour
 
         Destroy(bullet, 1);
         
-        isShotingBlocked = true;
         yield return StartCoroutine(blockShoting(1f));
     }
 
