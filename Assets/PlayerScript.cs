@@ -67,6 +67,9 @@ public class PlayerScript : MonoBehaviour
     }
 
     public IEnumerator Reload(){
+        if(isShotingBlocked)
+            yield break;
+
         currentAmmo = maxAmmo;
         gun.GetComponent<Animation>().Play("gun_reload");
         reload.Play();
