@@ -19,6 +19,7 @@ public class PlayerScript : MonoBehaviour
 
     public int maxAmmo = 20;
     public float empty_ammo_block_time_sec = 0.3f;
+    public float reload_block_time_sec = 0.9f;
     private int currentAmmo;
     private bool isShotingBlocked;
 
@@ -70,11 +71,12 @@ public class PlayerScript : MonoBehaviour
         if(isShotingBlocked)
             yield break;
 
+        isShotingBlocked = true;
         currentAmmo = maxAmmo;
         gun.GetComponent<Animation>().Play("gun_reload");
         reload.Play();
         updateAmmoHud();
-        yield break;
+        yield return StartCoroutine(blockShoting(reload_block_time_sec));
     }
 
     public IEnumerator Shoot()
