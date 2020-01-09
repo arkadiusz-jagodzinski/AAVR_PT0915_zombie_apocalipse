@@ -1178,6 +1178,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1641037526}
   - component: {fileID: 1641037527}
+  - component: {fileID: 1641037528}
   m_Layer: 5
   m_Name: MainMenu
   m_TagString: Untagged
@@ -1220,6 +1221,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DifficultyButtonText: {fileID: 1003150279}
+  GLMScript: {fileID: 1641037528}
+--- !u!114 &1641037528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1641037525}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ec78d826a5cce24c88bbeca5fe5e90d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2010506464
 GameObject:
   m_ObjectHideFlags: 0
