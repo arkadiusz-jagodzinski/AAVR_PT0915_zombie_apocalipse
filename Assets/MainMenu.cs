@@ -9,6 +9,7 @@ public class MainMenu : MonoBehaviour
 {
     // Start is called before the first frame update
     public TextMeshProUGUI DifficultyButtonText;
+    public gameLevelManager GLMScript;
 
     public void PlayGame()
     {
@@ -24,17 +25,45 @@ public class MainMenu : MonoBehaviour
 
     public void ChangeDifficultyText()
     {
-        string[] difficulty = new string[3] {"easy","normal","hard"};
+        const int length = 4;
+        string[] difficulty = new string[length] {"easy","medium","hard","insane"};
         var oldText = DifficultyButtonText.text;
         var newText = "";
-        var length = 3;
+        
+
+        
+
         for(var i = 0;i<length;i++){
             if(oldText == difficulty[i]){
                 newText = difficulty[(i+1)%(length)];
+                switch (i+1%length)
+                {
+                    case(0):
+                        GLMScript.setEasyDifficulty();
+                        break;  
+                    case(1):
+                        GLMScript.setMediumDifficulty();
+                        break;  
+                    case(2):
+                        GLMScript.setHardDifficulty();
+                        break;  
+                    case(3):
+                        GLMScript.setInsaneDifficulty();
+                        break;  
+                    default:
+                        GLMScript.setEasyDifficulty();
+                        break;
+                }
             }
+            
         }
         DifficultyButtonText.text = newText;
     }
+
+    public void Start(){
+    GLMScript = GameObject.FindObjectOfType(typeof(gameLevelManager)) as gameLevelManager;
+//   GLMScript.Test();
+}
 
     public void Update(){
     if(Input.GetButtonDown("Fire1"))

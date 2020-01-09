@@ -4,27 +4,27 @@ using UnityEngine;
 
 public class gameLevelManager : MonoBehaviour
 {
-    private static bool isIncreasingLevelEnabled = true;
+    private static bool isIncreasingLevelEnabled = false;
     private static float zombieSpeedIncrease = 0.2f;
-    private static int zombieSpeedIncreasePeriod = 8;
+    private static int zombieSpeedIncreasePeriod = 20;
 
     private static bool isIncrementingZombieNumberEnabled = true;
-    private static int zombieNumberIncrementPeriod = 20;
+    private static int zombieNumberIncrementPeriod = 60;
 
-    public static void setTutorialDifficulty()
+    public void setTutorialDifficulty()
     {
         isIncreasingLevelEnabled = false;
         isIncrementingZombieNumberEnabled = false;
     }
 
-    public static void setEasyDifficulty()
+    public void setEasyDifficulty()
     {
         isIncreasingLevelEnabled = false;
         isIncrementingZombieNumberEnabled = true;
         zombieNumberIncrementPeriod = 60;
     }
 
-    public static void setMediumDifficulty()
+    public void setMediumDifficulty()
     {
         isIncreasingLevelEnabled = true;
         isIncrementingZombieNumberEnabled = true;
@@ -32,7 +32,7 @@ public class gameLevelManager : MonoBehaviour
         zombieSpeedIncreasePeriod = 20;
     }
 
-    public static void setHardDifficulty()
+    public void setHardDifficulty()
     {
         isIncreasingLevelEnabled = true;
         isIncrementingZombieNumberEnabled = true;
@@ -40,11 +40,11 @@ public class gameLevelManager : MonoBehaviour
         zombieSpeedIncreasePeriod = 15;
     }
 
-    public static void setInsaneDifficulty()
+    public void setInsaneDifficulty()
     {
         isIncreasingLevelEnabled = true;
         isIncrementingZombieNumberEnabled = true;
-        zombieNumberIncrementPeriod = 25;
+        zombieNumberIncrementPeriod = 20;
         zombieSpeedIncreasePeriod = 10;
     }
 

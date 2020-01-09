@@ -77,11 +77,7 @@ public class zombieScript : MonoBehaviour
 
     void OnTriggerEnter(Collider col)
     {
-        if (col.name == "Player")
-        {
-            HealthBarScript.Health -= zombieDmg;
-        }
-        else
+        if (col.name != "Player")
         {
             Debug.Log("traafienie!");
             zombieDead = true;
