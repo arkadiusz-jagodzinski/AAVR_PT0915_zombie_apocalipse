@@ -77,7 +77,7 @@ public class zombieScript : MonoBehaviour
 
     void OnTriggerEnter(Collider col)
     {
-        if (col.name != "Player")
+        if (col.name == "bullet(Clone)")
         {
             Debug.Log("traafienie!");
             zombieDead = true;
