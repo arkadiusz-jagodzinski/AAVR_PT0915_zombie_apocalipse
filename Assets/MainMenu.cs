@@ -66,20 +66,20 @@ public class MainMenu : MonoBehaviour
 }
 
     public void Update(){
-    if(Input.GetButtonDown("Fire1"))
+    if(Input.GetButtonDown("Fire1") || Input.GetButtonDown("joystick button 1"))
         {
             Debug.Log("fire1");
             // PlayGame();
         }
     
-    if(Input.GetButtonDown("Fire2"))
+    if(Input.GetButtonDown("Fire2") || Input.GetKey(KeyCode.Space) || Input.GetButtonDown("joystick button 0") )
         {
             //TODO: actually change diffficulty in game scene
             Debug.Log("fire2");
             ChangeDifficultyText();
         }
     
-    if(Input.GetButtonDown("Fire3"))
+    if(Input.GetButtonDown("Fire3") || Input.GetButtonDown("joystick button 2"))
         {
             Debug.Log("fire3");
             QuitGame();
