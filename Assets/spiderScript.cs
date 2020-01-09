@@ -14,6 +14,8 @@ public class spiderScript : MonoBehaviour
     private bool isAttacking = false;
     private bool zombieDead = false;
     
+    private AudioSource zombieNoise;
+    private AudioSource hit;
 
     void Start()
     {
@@ -25,12 +27,12 @@ public class spiderScript : MonoBehaviour
         GetComponent<Animation>()["run"].wrapMode = WrapMode.Loop;
         GetComponent<Animation>().Play("run");
         var asources = GetComponents<AudioSource>();
-        var zombieNoise = asources[0];
+        zombieNoise = asources[0];
         zombieNoise.loop = true;
+        hit = asources[1];
         
         zombieNoise.Play();
-            
-
+        zombieNoise.volume = 0.5f;
     }
 
     private void Update()
@@ -42,14 +44,14 @@ public class spiderScript : MonoBehaviour
             agent.speed = GameState.zombieSpeed;
             agent.destination = goal.position;
 
-            if (agent.remainingDistance < 3.1 && agent.remainingDistance != 0 && Mathf.Infinity != agent.remainingDistance)
+            if (agent.remainingDistance < 4.1 && agent.remainingDistance != 0 && Mathf.Infinity != agent.remainingDistance)
             {                
                 if (!isAttacking){
                     this.attack();
                     isAttacking = true;
                 }
                     
-                if(timerAtack + 0.5 < timer)
+                if(timerAtack + 1.1 < timer)
                 {
                     isAttacking = false;
                 }
@@ -70,9 +72,7 @@ public class spiderScript : MonoBehaviour
         timerAtack = timer;
         AudioSource.PlayClipAtPoint(hitSound, this.transform.position);
         GetComponent<Animation>().Play("attack1");
-        // var asources = GetComponents<AudioSource>();
-        // var hit = asources[1];
-        // hit.Play();
+        hit.Play();
         HealthBarScript.Health -= zombieDmg;
     }
 
@@ -87,11 +87,11 @@ public class spiderScript : MonoBehaviour
             Destroy(col.gameObject);
             agent.enabled = false;
             GetComponent<Animation>().Stop();
-            // var asources = GetComponents<AudioSource>();
-            // var zombieNoise = asources[0];
-            // zombieNoise.loop = false;
-            // zombieNoise.Stop();
-            // zombieNoise.loop = false;
+
+            zombieNoise.loop = false;
+            zombieNoise.Stop();
+            zombieNoise.mute = true;
+
             GetComponent<Animation>().Play("death1");
             Destroy(gameObject, 6);
             StartCoroutine(respawnZombie());
