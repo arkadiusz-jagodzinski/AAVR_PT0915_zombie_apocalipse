@@ -43,7 +43,7 @@ public class zombieScript : MonoBehaviour
         if (agent.enabled)
         {
             agent.destination = goal.position;
-            agent.speed = GameState.zombieSpeed;
+            agent.speed = GameState.enemySpeed;
             agent.destination = goal.position;
 
             if (agent.remainingDistance < 3.1 && agent.remainingDistance > 0.5)
@@ -94,7 +94,7 @@ public class zombieScript : MonoBehaviour
         var asources = GetComponents<AudioSource>();
         var hit = asources[1];
         hit.Play();
-        HealthBarScript.Health -= zombieDmg;
+        HealthBarScript.setHealth(HealthBarScript.getHealth() - zombieDmg);
 
     }
 
@@ -107,7 +107,7 @@ public class zombieScript : MonoBehaviour
             zombieNoise.Stop();
             zombieNoise.mute = true;
             zombieDead = true;
-            GameState.kiledZombie++;
+            GameState.kiledEnemies++;
             AudioSource.PlayClipAtPoint(deathSound, this.transform.position);
             GetComponent<CapsuleCollider>().enabled = false;
             Destroy(col.gameObject);

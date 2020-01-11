@@ -3,12 +3,12 @@ using UnityEngine;
 
 public class GameState
 {
-    private static int zombiesCount = 2;
-    public static float zombieSpeed = 3.0f;
+    private static int enemyCount = 2;
+    public static float enemySpeed = 3.0f;
     public static float walkingSpeed = 6.0f;
-    public static float kiledZombie = 0.0f;
+    public static float kiledEnemies = 0.0f;
 
-    private static readonly List<Vector3> zombieRespPoints = new List<Vector3>
+    private static readonly List<Vector3> enemyRespPoints = new List<Vector3>
     {
         new Vector3(-15,0,2),
         new Vector3(-15,0,-10),
@@ -44,27 +44,53 @@ public class GameState
 
     public int getZombiesCount()
     {
-        return zombiesCount;
+        return enemyCount;
     }
 
-    public GameObject respNewZombie()
+    public GameObject respNewEnemy()
     {
-        zombiesCount++;
-        return respZombie();
+        enemyCount++;
+        return respEnemy();
+    }
+
+    public GameObject respEnemy()
+    {
+        int enemyType = Random.Range(0, 2);
+        if (enemyType == 0)
+        {
+            return respZombie();
+        }
+        else
+        {
+            return respSpider();
+        }
+      
     }
 
     public GameObject respZombie()
     {
-        GameObject newZombie = Object.Instantiate(GameObject.Find("zombieZero"));
-        newZombie.GetComponent<Transform>().position = getRandomZombieRespPosition();
-        newZombie.GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = true;
-        newZombie.GetComponent<AudioSource>().enabled = true;
-        newZombie.GetComponent<zombieScript>().enabled = true;
-        newZombie.GetComponent<Animation>()["Z_Run_InPlace"].wrapMode = WrapMode.Loop;
-        newZombie.GetComponent<Animation>().Play("Z_Run_InPlace");
-        newZombie.GetComponent<CapsuleCollider>().enabled = true;
+        GameObject newEnemy = Object.Instantiate(GameObject.Find("zombieZero"));
+        newEnemy.GetComponent<Transform>().position = getRandomZombieRespPosition();
+        newEnemy.GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = true;
+        newEnemy.GetComponent<AudioSource>().enabled = true;
+        newEnemy.GetComponent<zombieScript>().enabled = true;
+        newEnemy.GetComponent<Animation>()["Z_Run_InPlace"].wrapMode = WrapMode.Loop;
+        newEnemy.GetComponent<Animation>().Play("Z_Run_InPlace");
+        newEnemy.GetComponent<CapsuleCollider>().enabled = true;
+        return newEnemy;
+    }
 
-        return newZombie;
+    public GameObject respSpider()
+    {
+        GameObject newEnemy = Object.Instantiate(GameObject.Find("spiderZero"));
+        newEnemy.GetComponent<Transform>().position = getRandomZombieRespPosition();
+        newEnemy.GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = true;
+        newEnemy.GetComponent<AudioSource>().enabled = true;
+        newEnemy.GetComponent<spiderScript>().enabled = true;
+        newEnemy.GetComponent<Animation>()["run"].wrapMode = WrapMode.Loop;
+        newEnemy.GetComponent<Animation>().Play("run");
+        newEnemy.GetComponent<CapsuleCollider>().enabled = true;
+        return newEnemy;
     }
 
     public GameObject respNewPowerUp()
@@ -77,7 +103,7 @@ public class GameState
 
     private Vector3 getRandomZombieRespPosition()
     {
-        return zombieRespPoints[Random.Range(0, zombieRespPoints.Count)];
+        return enemyRespPoints[Random.Range(0, enemyRespPoints.Count)];
     }
 
     private Vector3 getRandomPowerUpRespPosition()

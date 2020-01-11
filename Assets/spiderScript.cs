@@ -41,7 +41,7 @@ public class spiderScript : MonoBehaviour
         if (agent.enabled)
         {
             agent.destination = goal.position;
-            agent.speed = GameState.zombieSpeed;
+            agent.speed = GameState.enemySpeed;
             agent.destination = goal.position;
 
             if (agent.remainingDistance < 4.1 && agent.remainingDistance != 0 && Mathf.Infinity != agent.remainingDistance)
@@ -79,7 +79,7 @@ public class spiderScript : MonoBehaviour
         AudioSource.PlayClipAtPoint(hitSound, this.transform.position);
         GetComponent<Animation>().Play("attack1");
         hit.Play();
-        HealthBarScript.Health -= zombieDmg;
+        HealthBarScript.setHealth(HealthBarScript.getHealth() - zombieDmg);
     }
 
     void OnTriggerEnter(Collider col)
@@ -109,7 +109,7 @@ public class spiderScript : MonoBehaviour
     {
         yield return new WaitForSeconds(3f);
         zombieDead = false;
-        GameObject zombie = GameState.getGameState().respZombie();
+        GameObject zombie = GameState.getGameState().respSpider();
         AudioSource.PlayClipAtPoint(respawnSound, zombie.transform.position);
         zombie.GetComponent<spiderScript>().Start();
     }

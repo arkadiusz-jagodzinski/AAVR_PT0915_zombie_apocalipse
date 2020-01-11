@@ -5,7 +5,7 @@ using UnityEngine;
 public class powerUpsManager : MonoBehaviour
 {
 
-    public static int POWER_UPS_PERIOD = 15;
+    public static int POWER_UPS_PERIOD = 25;
     public static bool isEnabled = true;
     private GameState gameState;
     void Start()

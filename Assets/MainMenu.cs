@@ -10,6 +10,7 @@ public class MainMenu : MonoBehaviour
     // Start is called before the first frame update
     public TextMeshProUGUI DifficultyButtonText;
     public gameLevelManager GLMScript;
+    private bool changeDifficulityBlocked = false;
 
     public void PlayGame()
     {
@@ -19,7 +20,7 @@ public class MainMenu : MonoBehaviour
 
     public void QuitGame()
     {
-        UnityEditor.EditorApplication.isPlaying = false;
+        //UnityEditor.EditorApplication.isPlaying = false;
         Application.Quit();
     }
 
@@ -66,23 +67,34 @@ public class MainMenu : MonoBehaviour
 }
 
     public void Update(){
-    if(Input.GetButtonDown("Fire1") || Input.GetButtonDown("joystick button 1"))
+    if(Input.GetButton("Fire1") || Input.GetButton("joystick button 1"))
         {
             Debug.Log("fire1");
-            // PlayGame();
+            PlayGame();
         }
     
-    if(Input.GetButtonDown("Fire2") || Input.GetKey(KeyCode.Space) || Input.GetButtonDown("joystick button 0") )
+    if(Input.GetButton("Jump") || Input.GetKey(KeyCode.Space) || Input.GetButton("joystick button 0") )
         {
             //TODO: actually change diffficulty in game scene
+            if(!changeDifficulityBlocked)
+            {
+                ChangeDifficultyText();
+                changeDifficulityBlocked = true;
+                Invoke("unblockDifficulity", 0.4f);
+            }
             Debug.Log("fire2");
-            ChangeDifficultyText();
+            
         }
     
-    if(Input.GetButtonDown("Fire3") || Input.GetButtonDown("joystick button 2"))
+    if(Input.GetButton("Fire3") || Input.GetButton("joystick button 2"))
         {
             Debug.Log("fire3");
             QuitGame();
         }
+    }
+
+    void unblockDifficulity()
+    {
+        changeDifficulityBlocked = false;
     }
 }

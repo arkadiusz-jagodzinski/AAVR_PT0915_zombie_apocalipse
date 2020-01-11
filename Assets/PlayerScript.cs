@@ -115,7 +115,7 @@ public class PlayerScript : MonoBehaviour
         shoot.Play();
         gun.GetComponent<Animation>().Play("gun");
 
-        Destroy(bullet, 1);
+        Destroy(bullet, 3);
 
         yield return StartCoroutine(blockShoting(1f));
     }
@@ -123,7 +123,7 @@ public class PlayerScript : MonoBehaviour
     void Update()
     {
         Debug.DrawRay(spawnPoint.transform.position, spawnPoint.transform.forward, Color.green);
-        if (HealthBarScript.Health < 1)
+        if (HealthBarScript.getHealth() < 1)
         {
             OnGameOver();
             Time.timeScale = 0;

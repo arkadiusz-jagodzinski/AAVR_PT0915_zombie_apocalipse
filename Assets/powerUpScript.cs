@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class powerUpScript : MonoBehaviour
 {
-    public static float SPEED_BOOST = (float) 1.5;
-    public static int SPEED_UP_LENGTH = 5;
+    public static float SPEED_BOOST = 1.8f;
+    public static int SPEED_UP_LENGTH = 25;
+    public static int IMMORTALITY_LENGTH = 20;
+    public static int FROZEN_ENEMIES_LENGTH = 15;
     public AudioClip activationSound;
     
     void Start()
@@ -23,14 +25,60 @@ public class powerUpScript : MonoBehaviour
             Debug.Log("PowerUp zebrany!");
             AudioSource.PlayClipAtPoint(activationSound, this.transform.position);
             this.gameObject.GetComponent<Transform>().position = new Vector3(0,0,-222);
-            GameState.walkingSpeed *= SPEED_BOOST;
-            Invoke("disablingSpeedUp", SPEED_UP_LENGTH);
+            chooseRandomPowerUp();
             
         }
     }
 
+    void chooseRandomPowerUp()
+    {
+        int powerUpNumber = Random.Range(0, 5);
+        if(powerUpNumber == 0)
+        {
+            Debug.Log("PowerUp: Przyspieszenie");
+            GameState.walkingSpeed *= SPEED_BOOST;
+            Invoke("disablingSpeedUp", SPEED_UP_LENGTH);
+        }
+        if(powerUpNumber == 1)
+        {
+            Debug.Log("PowerUp: nieśmiertelność");
+            HealthBarScript.isMortal = false;
+            Invoke("disablingImmortality", IMMORTALITY_LENGTH);
+        }
+        if(powerUpNumber == 2)
+        {
+            Debug.Log("PowerUp: zamrożenie");
+            GameObject[] enemies =  GameObject.FindGameObjectsWithTag("enemy");
+            foreach(GameObject enemy in enemies)
+            {
+                enemy.GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = false;
+            }
+            Invoke("disablingFrozenEnemies", FROZEN_ENEMIES_LENGTH);
+        }
+        if(powerUpNumber == 3 || powerUpNumber == 4)
+        {
+            Debug.Log("PowerUp: uzupełnienie zdrowia");
+            HealthBarScript.restoreHealth();
+        }
+    }
+
+
     void disablingSpeedUp()
     {
         GameState.walkingSpeed /= SPEED_BOOST;
+    }
+
+    void disablingImmortality()
+    {
+        HealthBarScript.isMortal = true;
+    }
+
+    void disablingFrozenEnemies()
+    {
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("enemy");
+        foreach (GameObject enemy in enemies)
+        {
+            enemy.GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = true;
+        }
     }
 }

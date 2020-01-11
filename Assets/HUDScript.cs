@@ -15,7 +15,7 @@ public class HUDScript : MonoBehaviour
     void Start()
     {
         lastTime = (int)Time.time;
-        GameState.kiledZombie = 0;
+        GameState.kiledEnemies = 0;
         playerScript = FindObjectOfType<PlayerScript>();
         playerScript.GameOverEvent += Instance_GameOverEvent;
     }
@@ -28,7 +28,7 @@ public class HUDScript : MonoBehaviour
             stopTimer = true;
             lastTime = (int)Time.time;
         }
-        mTextGameOver.text = "Game Over \n" + "Killed Zombie: " + GameState.kiledZombie.ToString() + "\n Game Time: " + timer + "s";
+        mTextGameOver.text = "Game Over \n" + "Killed Zombie: " + GameState.kiledEnemies.ToString() + "\n Game Time: " + timer + "s";
         
     }
     // Update is called once per frame

@@ -68,7 +68,7 @@ public class gameLevelManager : MonoBehaviour
     {
         while (isIncreasingLevelEnabled)
         {
-            GameState.zombieSpeed += zombieSpeedIncrease;
+            GameState.enemySpeed += zombieSpeedIncrease;
             yield return new WaitForSeconds(zombieSpeedIncreasePeriod);
         }
     }
@@ -77,7 +77,7 @@ public class gameLevelManager : MonoBehaviour
     {
         while (isIncrementingZombieNumberEnabled)
         {
-            gameState.respNewZombie();
+            gameState.respNewEnemy();
             yield return new WaitForSeconds(zombieNumberIncrementPeriod);
         }
     }
