@@ -80,10 +80,11 @@ public class zombieScript : MonoBehaviour
             isAttacking = false;
         }
 
-        if (PlayerScript.gameEnded)
+   /*     if (PlayerScript.gameEnded)
         {
             Destroy(gameObject);
         }
+        */
     }
     public void attack()
     {
