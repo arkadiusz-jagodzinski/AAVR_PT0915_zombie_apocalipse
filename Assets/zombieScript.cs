@@ -15,7 +15,8 @@ public class zombieScript : MonoBehaviour
     private bool zombieDead = false;
 
     private AudioSource zombieNoise;
-    
+
+    // PlayerScript playerScript;
 
     void Start()
     {
@@ -32,6 +33,8 @@ public class zombieScript : MonoBehaviour
         zombieNoise.Play();
         zombieNoise.volume = 0.05f;
 
+        // playerScript = FindObjectOfType<PlayerScript>();
+        // playerScript.GameOverEvent += Instance_GameOverEvent;
     }
 
     private void Update()
@@ -44,25 +47,42 @@ public class zombieScript : MonoBehaviour
             agent.destination = goal.position;
 
             if (agent.remainingDistance < 3.1 && agent.remainingDistance != 0 && Mathf.Infinity != agent.remainingDistance)
-            {                
-                if (!isAttacking){
+            {
+                if (!isAttacking)
+                {
                     this.attack();
                     isAttacking = true;
                 }
-                    
-                if(timerAtack + 0.5 < timer)
+
+                if (timerAtack + 0.5 < timer)
                 {
                     isAttacking = false;
                 }
             }
             else
             {
-                if (!zombieDead)
+                if (zombieDead)
+                {
+                    zombieNoise.loop = false;
+                    zombieNoise.Stop();
+                    zombieNoise.mute = true;
+                    zombieDead = true;
+                }
+                else
+                {
                     GetComponent<Animation>().Play("Z_Run_InPlace");
+
+                }
             }
         }
-        if(zombieDead){
+        if (zombieDead)
+        {
             isAttacking = false;
+        }
+
+        if (PlayerScript.gameEnded)
+        {
+            Destroy(gameObject);
         }
     }
     public void attack()
@@ -74,6 +94,7 @@ public class zombieScript : MonoBehaviour
         var hit = asources[1];
         hit.Play();
         HealthBarScript.Health -= zombieDmg;
+
     }
 
     void OnTriggerEnter(Collider col)
@@ -81,6 +102,9 @@ public class zombieScript : MonoBehaviour
         if (col.name == "bullet(Clone)")
         {
             Debug.Log("traafienie!");
+            zombieNoise.loop = false;
+            zombieNoise.Stop();
+            zombieNoise.mute = true;
             zombieDead = true;
             GameState.kiledZombie++;
             AudioSource.PlayClipAtPoint(deathSound, this.transform.position);
@@ -90,9 +114,7 @@ public class zombieScript : MonoBehaviour
             GetComponent<Animation>().Stop();
 
 
-            zombieNoise.loop = false;
-            zombieNoise.Stop();
-            zombieNoise.mute = true;
+
             GetComponent<Animation>().Play("Z_FallingBack");
             Destroy(gameObject, 6);
             StartCoroutine(respawnZombie());
@@ -107,5 +129,13 @@ public class zombieScript : MonoBehaviour
         GameObject zombie = GameState.getGameState().respZombie();
         AudioSource.PlayClipAtPoint(respawnSound, zombie.transform.position);
         zombie.GetComponent<zombieScript>().Start();
+    }
+
+    private void Instance_GameOverEvent(object sender, System.EventArgs e)
+    {
+        zombieNoise.loop = false;
+        zombieNoise.Stop();
+        zombieNoise.mute = true;
+        zombieDead = true;
     }
 }

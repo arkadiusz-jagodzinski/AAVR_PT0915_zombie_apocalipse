@@ -26,6 +26,8 @@ public class PlayerScript : MonoBehaviour
 
     public event EventHandler GameOverEvent;
 
+    public static bool gameEnded = false;
+
     IEnumerator blockShoting(float sec)
     {
         isShotingBlocked = true;
@@ -39,22 +41,26 @@ public class PlayerScript : MonoBehaviour
             GameOverEvent(this, EventArgs.Empty);
     }
 
-    private void updateAmmoHud() {
+    private void updateAmmoHud()
+    {
         AmmoText.text = currentAmmo.ToString();
     }
 
-    private bool hasAmmo() {
+    private bool hasAmmo()
+    {
         return currentAmmo > 0;
     }
 
-    private void loadAudio(){
+    private void loadAudio()
+    {
         var asources = GetComponents<AudioSource>();
         shoot = asources[0];
         reload = asources[1];
         gun_empty = asources[2];
     }
 
-    private void loadGameObjects(){
+    private void loadGameObjects()
+    {
         gun = gameObject.transform.GetChild(0).gameObject;
         spawnPoint = gun.transform.GetChild(0).gameObject;
     }
@@ -64,13 +70,14 @@ public class PlayerScript : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         Time.timeScale = 1;
         loadGameObjects();
-        loadAudio();    
-        currentAmmo = maxAmmo; 
+        loadAudio();
+        currentAmmo = maxAmmo;
         updateAmmoHud();
     }
 
-    public IEnumerator Reload(){
-        if(isShotingBlocked)
+    public IEnumerator Reload()
+    {
+        if (isShotingBlocked)
             yield break;
 
         currentAmmo = maxAmmo;
@@ -82,10 +89,11 @@ public class PlayerScript : MonoBehaviour
 
     public IEnumerator Shoot()
     {
-        if(isShotingBlocked)
+        if (isShotingBlocked)
             yield break;
 
-        if(!hasAmmo()){
+        if (!hasAmmo())
+        {
             gun_empty.Play();
             StartCoroutine(blockShoting(empty_ammo_block_time_sec));
             yield break;
@@ -108,7 +116,7 @@ public class PlayerScript : MonoBehaviour
         gun.GetComponent<Animation>().Play("gun");
 
         Destroy(bullet, 1);
-        
+
         yield return StartCoroutine(blockShoting(1f));
     }
 
@@ -120,12 +128,16 @@ public class PlayerScript : MonoBehaviour
             OnGameOver();
             Time.timeScale = 0;
             audioSource.mute = true;
+<<<<<<< HEAD
             //Debug.Log(GameState.kiledZombie);
+=======
+            gameEnded = true;
+>>>>>>> 4e47ebc43e4554ea90d14e7dc780dc3aa981cdce
             if (Input.GetButton("Fire1"))
             {
                 SceneManager.LoadScene("Menu");
             }
         }
-           
+
     }
 }
