@@ -13,7 +13,7 @@ public class spiderScript : MonoBehaviour
     public AudioClip respawnSound;
     private bool isAttacking = false;
     private bool zombieDead = false;
-    
+
     private AudioSource zombieNoise;
     private AudioSource hit;
 
@@ -27,10 +27,10 @@ public class spiderScript : MonoBehaviour
         GetComponent<Animation>()["run"].wrapMode = WrapMode.Loop;
         GetComponent<Animation>().Play("run");
         var asources = GetComponents<AudioSource>();
-        zombieNoise = asources[0];
+        zombieNoise = asources[1];
         zombieNoise.loop = true;
-        hit = asources[1];
-        
+        hit = asources[0];
+
         zombieNoise.Play();
         zombieNoise.volume = 0.5f;
     }
@@ -45,13 +45,14 @@ public class spiderScript : MonoBehaviour
             agent.destination = goal.position;
 
             if (agent.remainingDistance < 4.1 && agent.remainingDistance != 0 && Mathf.Infinity != agent.remainingDistance)
-            {                
-                if (!isAttacking){
+            {
+                if (!isAttacking)
+                {
                     this.attack();
                     isAttacking = true;
                 }
-                    
-                if(timerAtack + 1.1 < timer)
+
+                if (timerAtack + 1.1 < timer)
                 {
                     isAttacking = false;
                 }
@@ -62,8 +63,13 @@ public class spiderScript : MonoBehaviour
                     GetComponent<Animation>().Play("run");
             }
         }
-        if(zombieDead){
+        if (zombieDead)
+        {
             isAttacking = false;
+        }
+        if (PlayerScript.gameEnded)
+        {
+            Destroy(gameObject);
         }
     }
     public void attack()
