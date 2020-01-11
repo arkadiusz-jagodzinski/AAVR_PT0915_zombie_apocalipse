@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerScript : MonoBehaviour
@@ -128,6 +129,10 @@ public class PlayerScript : MonoBehaviour
             Time.timeScale = 0;
             audioSource.mute = true;
             gameEnded = true;
+            if (Input.GetButton("Fire1"))
+            {
+                SceneManager.LoadScene("Menu");
+            }
         }
 
     }
