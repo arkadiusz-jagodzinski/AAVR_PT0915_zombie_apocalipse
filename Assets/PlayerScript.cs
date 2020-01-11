@@ -128,11 +128,7 @@ public class PlayerScript : MonoBehaviour
             OnGameOver();
             Time.timeScale = 0;
             audioSource.mute = true;
-<<<<<<< HEAD
-            //Debug.Log(GameState.kiledZombie);
-=======
             gameEnded = true;
->>>>>>> 4e47ebc43e4554ea90d14e7dc780dc3aa981cdce
             if (Input.GetButton("Fire1"))
             {
                 SceneManager.LoadScene("Menu");
