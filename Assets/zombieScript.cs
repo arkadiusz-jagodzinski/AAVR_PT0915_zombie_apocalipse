@@ -45,46 +45,48 @@ public class zombieScript : MonoBehaviour
             agent.destination = goal.position;
             agent.speed = GameState.enemySpeed;
             agent.destination = goal.position;
-
-            if (agent.remainingDistance < 3.1 && agent.remainingDistance > 0.5)
+            if (!agent.pathPending)
             {
-                if (!isAttacking)
-                {
-                    this.attack();
-                    isAttacking = true;
-                }
+                    if (agent.remainingDistance < 3.1 && agent.remainingDistance > 0.1)
+                    {
+                        if (!isAttacking)
+                        {
+                            this.attack();
+                            isAttacking = true;
+                        }
 
-                if (timerAtack + 0.5 < timer)
-                {
-                    isAttacking = false;
-                }
+                        if (timerAtack + 0.5 < timer)
+                        {
+                            isAttacking = false;
+                        }
+                    }
+                    else
+                    {
+                        if (zombieDead)
+                        {
+                            zombieNoise.loop = false;
+                            zombieNoise.Stop();
+                            zombieNoise.mute = true;
+                            zombieDead = true;
+                        }
+                        else
+                        {
+                            GetComponent<Animation>().Play("Z_Run_InPlace");
+
+                        }
+                    }
             }
-            else
+            if (zombieDead)
             {
-                if (zombieDead)
-                {
-                    zombieNoise.loop = false;
-                    zombieNoise.Stop();
-                    zombieNoise.mute = true;
-                    zombieDead = true;
-                }
-                else
-                {
-                    GetComponent<Animation>().Play("Z_Run_InPlace");
-
-                }
+                isAttacking = false;
             }
-        }
-        if (zombieDead)
-        {
-            isAttacking = false;
-        }
 
-   /*     if (PlayerScript.gameEnded)
-        {
-            Destroy(gameObject);
+            /*     if (PlayerScript.gameEnded)
+                 {
+                     Destroy(gameObject);
+                 }
+                 */
         }
-        */
     }
     public void attack()
     {
