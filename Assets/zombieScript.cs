@@ -46,7 +46,7 @@ public class zombieScript : MonoBehaviour
             agent.speed = GameState.zombieSpeed;
             agent.destination = goal.position;
 
-            if (agent.remainingDistance < 3.1 && agent.remainingDistance != 0 && Mathf.Infinity != agent.remainingDistance)
+            if (agent.remainingDistance < 3.1 && agent.remainingDistance > 0.5)
             {
                 if (!isAttacking)
                 {
