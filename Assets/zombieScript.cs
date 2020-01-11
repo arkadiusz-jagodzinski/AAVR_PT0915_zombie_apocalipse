@@ -82,6 +82,7 @@ public class zombieScript : MonoBehaviour
         {
             Debug.Log("traafienie!");
             zombieDead = true;
+            GameState.kiledZombie++;
             AudioSource.PlayClipAtPoint(deathSound, this.transform.position);
             GetComponent<CapsuleCollider>().enabled = false;
             Destroy(col.gameObject);

@@ -6,6 +6,7 @@ public class GameState
     private static int zombiesCount = 2;
     public static float zombieSpeed = 3.0f;
     public static float walkingSpeed = 6.0f;
+    public static float kiledZombie = 0.0f;
 
     private static readonly List<Vector3> zombieRespPoints = new List<Vector3>
     {
