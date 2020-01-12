@@ -44,32 +44,36 @@ public class spiderScript : MonoBehaviour
             agent.speed = GameState.enemySpeed;
             agent.destination = goal.position;
 
-            if (agent.remainingDistance < 4.1 && agent.remainingDistance != 0 && Mathf.Infinity != agent.remainingDistance)
+            if (!agent.pathPending)
             {
-                if (!isAttacking)
+                if (agent.remainingDistance < 4.1 && agent.remainingDistance != 0 && Mathf.Infinity != agent.remainingDistance)
                 {
-                    this.attack();
-                    isAttacking = true;
-                }
+                    if (!isAttacking)
+                    {
+                        this.attack();
+                        isAttacking = true;
+                    }
 
-                if (timerAtack + 1.1 < timer)
+                    if (timerAtack + 1.1 < timer)
+                    {
+                        isAttacking = false;
+                    }
+                }
+                else
                 {
-                    isAttacking = false;
+                    if (!zombieDead)
+                        GetComponent<Animation>().Play("run");
                 }
             }
-            else
+            if (zombieDead)
             {
-                if (!zombieDead)
-                    GetComponent<Animation>().Play("run");
+                isAttacking = false;
             }
-        }
-        if (zombieDead)
-        {
-            isAttacking = false;
-        }
-        if (PlayerScript.gameEnded)
-        {
-            Destroy(gameObject);
+            /*
+            if (PlayerScript.gameEnded)
+            {
+                Destroy(gameObject);
+            }*/
         }
     }
     public void attack()
@@ -88,6 +92,7 @@ public class spiderScript : MonoBehaviour
         {
             Debug.Log("traafienie!");
             zombieDead = true;
+            GameState.kiledEnemies++;
             AudioSource.PlayClipAtPoint(deathSound, this.transform.position);
             GetComponent<CapsuleCollider>().enabled = false;
             Destroy(col.gameObject);
