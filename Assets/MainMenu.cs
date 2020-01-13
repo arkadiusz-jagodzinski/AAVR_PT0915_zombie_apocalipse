@@ -67,7 +67,7 @@ public class MainMenu : MonoBehaviour
 }
 
     public void Update(){
-    if(Input.GetButton("Fire1") || Input.GetButton("joystick button 1"))
+    if(Input.GetButton("joystick button 1"))
         {
             Debug.Log("fire1");
             PlayGame();
