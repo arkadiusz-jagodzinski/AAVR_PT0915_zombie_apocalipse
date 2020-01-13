@@ -11,6 +11,7 @@ public class spiderScript : MonoBehaviour
     public AudioClip deathSound;
     public AudioClip hitSound;
     public AudioClip respawnSound;
+public AudioClip playerDeadSound;
     private bool isAttacking = false;
     private bool zombieDead = false;
 
@@ -90,6 +91,9 @@ public class spiderScript : MonoBehaviour
             hit.Play();
         if(old_hp>20 && new_hp<=20)
             hit.Play();
+if(new_hp<=0){
+            AudioSource.PlayClipAtPoint(playerDeadSound, this.transform.position);
+        }
         HealthBarScript.setHealth(new_hp);
     }
 
