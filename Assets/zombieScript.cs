@@ -95,7 +95,14 @@ public class zombieScript : MonoBehaviour
         GetComponent<Animation>().Play("Z_Attack");
         var asources = GetComponents<AudioSource>();
         var hit = asources[1];
-        hit.Play();
+        float old_hp = HealthBarScript.getHealth();
+        float new_hp = old_hp - zombieDmg;
+        if(old_hp>90 && new_hp<=90)
+            hit.Play();
+        if(old_hp>50 && new_hp<=50)
+            hit.Play();
+        if(old_hp>20 && new_hp<=20)
+            hit.Play();
         HealthBarScript.setHealth(HealthBarScript.getHealth() - zombieDmg);
 
     }
