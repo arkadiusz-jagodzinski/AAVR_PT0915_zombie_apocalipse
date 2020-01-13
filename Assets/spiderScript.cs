@@ -11,6 +11,7 @@ public class spiderScript : MonoBehaviour
     public AudioClip deathSound;
     public AudioClip hitSound;
     public AudioClip respawnSound;
+public AudioClip playerDeadSound;
     private bool isAttacking = false;
     private bool zombieDead = false;
 
@@ -82,8 +83,18 @@ public class spiderScript : MonoBehaviour
         timerAtack = timer;
         AudioSource.PlayClipAtPoint(hitSound, this.transform.position);
         GetComponent<Animation>().Play("attack1");
-        hit.Play();
-        HealthBarScript.setHealth(HealthBarScript.getHealth() - zombieDmg);
+        float old_hp = HealthBarScript.getHealth();
+        float new_hp = old_hp - zombieDmg;
+        if(old_hp>90 && new_hp<=90)
+            hit.Play();
+        if(old_hp>50 && new_hp<=50)
+            hit.Play();
+        if(old_hp>20 && new_hp<=20)
+            hit.Play();
+if(new_hp<=0){
+            AudioSource.PlayClipAtPoint(playerDeadSound, this.transform.position);
+        }
+        HealthBarScript.setHealth(new_hp);
     }
 
     void OnTriggerEnter(Collider col)
