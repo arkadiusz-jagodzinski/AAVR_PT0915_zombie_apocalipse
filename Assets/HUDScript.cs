@@ -11,6 +11,9 @@ public class HUDScript : MonoBehaviour
     private int timer = 0;
     public RectTransform mPanelGameOver;
     public Text mTextGameOver;
+
+    public RectTransform mPanelNotification;
+    public Text mTextNotification;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,6 +34,11 @@ public class HUDScript : MonoBehaviour
         mTextGameOver.text = "Game Over \n" + "Killed Enemies: " + GameState.kiledEnemies.ToString() + "\n Game Time: " + timer + "s";
         
     }
+    public  void setNotification(bool state)
+    {
+        mPanelNotification.gameObject.SetActive(state);
+    }
+
     // Update is called once per frame
     void Update()
     {
