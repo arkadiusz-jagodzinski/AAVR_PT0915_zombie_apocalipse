@@ -14,6 +14,7 @@ public class MainMenu : MonoBehaviour
 
     public void PlayGame()
     {
+        playSound();
         Debug.Log("PlayGame()");
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
@@ -21,11 +22,13 @@ public class MainMenu : MonoBehaviour
     public void QuitGame()
     {
         //UnityEditor.EditorApplication.isPlaying = false;
+        playSound();
         Application.Quit();
     }
 
     public void ChangeDifficultyText()
     {
+        playSound();
         const int length = 5;
         string[] difficulty = new string[length] {"tutorial","easy","medium","hard","insane"};
         var oldText = DifficultyButtonText.text;
@@ -100,4 +103,11 @@ public class MainMenu : MonoBehaviour
     {
         changeDifficulityBlocked = false;
     }
+
+void playSound(){
+
+    var asources = GetComponents<AudioSource>();
+    var click = asources[0];
+    click.Play();
+}
 }
