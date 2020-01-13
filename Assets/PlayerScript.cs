@@ -137,8 +137,9 @@ public class PlayerScript : MonoBehaviour
         }
         if (Input.GetButtonDown("Fire2"))
         {
-            //FindObjectOfType<HUDScript>().mPanelNotification.gameObject.SetActive(true);
             Debug.Log("pause");
+            FindObjectOfType<HUDScript>().mPanelNotification.gameObject.SetActive(true);
+            FindObjectOfType<HUDScript>().mTextNotification.text = "Pause";
             Time.timeScale = 0;
             audioSource.mute = true;
             pause = true;
@@ -147,8 +148,8 @@ public class PlayerScript : MonoBehaviour
         {
             if (Input.GetButtonDown("Fire1"))
             {
-                //FindObjectOfType<HUDScript>().mPanelNotification.gameObject.SetActive(false);
                 Debug.Log("start");
+                FindObjectOfType<HUDScript>().mPanelNotification.gameObject.SetActive(false);
                 Time.timeScale = 1;
                 audioSource.mute = false;
                 pause = false;

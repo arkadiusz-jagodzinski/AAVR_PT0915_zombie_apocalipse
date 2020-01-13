@@ -38,12 +38,18 @@ public class powerUpScript : MonoBehaviour
             Debug.Log("PowerUp: Przyspieszenie");
             GameState.walkingSpeed *= SPEED_BOOST;
             Invoke("disablingSpeedUp", SPEED_UP_LENGTH);
+            FindObjectOfType<HUDScript>().mTextNotification.text = "Przyśpieszenie";
+            FindObjectOfType<HUDScript>().mPanelNotification.gameObject.SetActive(true);
+           
         }
         if(powerUpNumber == 1)
         {
             Debug.Log("PowerUp: nieśmiertelność");
             HealthBarScript.isMortal = false;
             Invoke("disablingImmortality", IMMORTALITY_LENGTH);
+            FindObjectOfType<HUDScript>().mTextNotification.text = "Nieśmiertelność";
+            FindObjectOfType<HUDScript>().mPanelNotification.gameObject.SetActive(true);
+            
         }
         if(powerUpNumber == 2)
         {
@@ -54,6 +60,9 @@ public class powerUpScript : MonoBehaviour
                 enemy.GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = false;
             }
             Invoke("disablingFrozenEnemies", FROZEN_ENEMIES_LENGTH);
+            FindObjectOfType<HUDScript>().mTextNotification.text = "Zamrożenie";
+            FindObjectOfType<HUDScript>().mPanelNotification.gameObject.SetActive(true);
+            
         }
         if(powerUpNumber == 3 || powerUpNumber == 4)
         {
@@ -66,11 +75,13 @@ public class powerUpScript : MonoBehaviour
     void disablingSpeedUp()
     {
         GameState.walkingSpeed /= SPEED_BOOST;
+        FindObjectOfType<HUDScript>().mPanelNotification.gameObject.SetActive(false);
     }
 
     void disablingImmortality()
     {
         HealthBarScript.isMortal = true;
+        FindObjectOfType<HUDScript>().mPanelNotification.gameObject.SetActive(false);
     }
 
     void disablingFrozenEnemies()
@@ -80,5 +91,6 @@ public class powerUpScript : MonoBehaviour
         {
             enemy.GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = true;
         }
+        FindObjectOfType<HUDScript>().mPanelNotification.gameObject.SetActive(false);
     }
 }
