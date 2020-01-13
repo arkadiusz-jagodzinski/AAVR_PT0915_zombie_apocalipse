@@ -10,6 +10,7 @@ public class PlayerScript : MonoBehaviour
 {
     private GameObject gun;
     private GameObject spawnPoint;
+    private bool pause = false;
 
     private IEnumerator coroutine;
     public Text AmmoText;
@@ -132,6 +133,23 @@ public class PlayerScript : MonoBehaviour
             if (Input.GetButton("Fire1"))
             {
                 SceneManager.LoadScene("Menu");
+            }
+        }
+        if (Input.GetButtonDown("Fire2"))
+        {
+            Debug.Log("pause");
+            Time.timeScale = 0;
+            audioSource.mute = true;
+            pause = true;
+        }
+        if (pause)
+        {
+            if (Input.GetButtonDown("Fire1"))
+            {
+                Debug.Log("start");
+                Time.timeScale = 1;
+                audioSource.mute = false;
+                pause = false;
             }
         }
 
