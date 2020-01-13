@@ -111,7 +111,7 @@ public class PlayerScript : MonoBehaviour
         bullet.transform.position = spawnPoint.transform.position;
 
         //add force to the bullet in the direction of the spawnPoint's forward vector
-        rb.AddForce(spawnPoint.transform.forward * 500f);
+        rb.AddForce(spawnPoint.transform.forward * 2500f);
 
         shoot.Play();
         gun.GetComponent<Animation>().Play("gun");

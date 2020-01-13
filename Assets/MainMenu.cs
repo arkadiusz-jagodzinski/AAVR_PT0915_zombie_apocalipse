@@ -26,8 +26,8 @@ public class MainMenu : MonoBehaviour
 
     public void ChangeDifficultyText()
     {
-        const int length = 4;
-        string[] difficulty = new string[length] {"easy","medium","hard","insane"};
+        const int length = 5;
+        string[] difficulty = new string[length] {"tutorial","easy","medium","hard","insane"};
         var oldText = DifficultyButtonText.text;
         var newText = "";
         
@@ -37,8 +37,11 @@ public class MainMenu : MonoBehaviour
         for(var i = 0;i<length;i++){
             if(oldText == difficulty[i]){
                 newText = difficulty[(i+1)%(length)];
-                switch (i+1%length)
+                switch (i%length)
                 {
+                    case(4):
+                        GLMScript.setTutorialDifficulty();
+                        break;  
                     case(0):
                         GLMScript.setEasyDifficulty();
                         break;  
@@ -67,7 +70,7 @@ public class MainMenu : MonoBehaviour
 }
 
     public void Update(){
-    if(Input.GetButton("Fire1") || Input.GetButton("joystick button 1"))
+    if(Input.GetButton("joystick button 1"))
         {
             Debug.Log("fire1");
             PlayGame();
