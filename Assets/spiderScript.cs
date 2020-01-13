@@ -102,8 +102,12 @@ public class spiderScript : MonoBehaviour
             zombieNoise.loop = false;
             zombieNoise.Stop();
             zombieNoise.mute = true;
-
-            GetComponent<Animation>().Play("death1");
+            if(Random.Range(0, 2)==0){
+                GetComponent<Animation>().Play("death1");
+            }else{
+                GetComponent<Animation>().Play("death2");
+            }
+            
             Destroy(gameObject, 6);
             StartCoroutine(respawnZombie());
         }
