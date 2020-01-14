@@ -21,7 +21,7 @@ public class PlayerScript : MonoBehaviour
 
     public int maxAmmo = 20;
     public float empty_ammo_block_time_sec = 0.3f;
-    public float reload_block_time_sec = 0.9f;
+    public const float reload_block_time_sec = 1.0f;
     private int currentAmmo;
     private bool isShotingBlocked;
 
