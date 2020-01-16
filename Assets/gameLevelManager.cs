@@ -9,7 +9,7 @@ public class gameLevelManager : MonoBehaviour
     private static int zombieSpeedIncreasePeriod = 20;
 
     private static bool isIncrementingZombieNumberEnabled = true;
-    private static int zombieNumberIncrementPeriod = 60;
+    private static int zombieNumberIncrementPeriod = 1;
 
     public void setTutorialDifficulty()
     {
