@@ -68,7 +68,7 @@ public class PlayerControll : MonoBehaviour
             }
             if ( Input.GetButton("Fire1"))
             {
-                Debug.Log("Strzał!");
+                // Debug.Log("Strzał!");
                 StartCoroutine(playerScript.Shoot());
             }
             if (Input.GetKey(KeyCode.R) || Input.GetButton("Fire3"))

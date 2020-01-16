@@ -28,6 +28,7 @@ public class PlayerScript : MonoBehaviour
     public event EventHandler GameOverEvent;
 
     public static bool gameEnded = false;
+    public static bool gamePaused = false;
 
     IEnumerator blockShoting(float sec)
     {
@@ -143,6 +144,7 @@ public class PlayerScript : MonoBehaviour
             Time.timeScale = 0;
             audioSource.mute = true;
             pause = true;
+            gamePaused = true;
         }
         if (pause)
         {
@@ -153,6 +155,7 @@ public class PlayerScript : MonoBehaviour
                 Time.timeScale = 1;
                 audioSource.mute = false;
                 pause = false;
+                gamePaused = false;
             }
         }
 
