@@ -33,6 +33,7 @@ public AudioClip playerDeadSound;
         zombieNoise.loop = true;
         zombieNoise.Play();
         zombieNoise.volume = 0.15f;
+        hit = asources[1];
     }
 
     private void Update()
