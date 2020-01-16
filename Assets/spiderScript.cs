@@ -27,13 +27,12 @@ public AudioClip playerDeadSound;
         agent.destination = goal.position;
         GetComponent<Animation>()["run"].wrapMode = WrapMode.Loop;
         GetComponent<Animation>().Play("run");
+        
         var asources = GetComponents<AudioSource>();
-        zombieNoise = asources[1];
+        zombieNoise = asources[0];
         zombieNoise.loop = true;
-        hit = asources[0];
-
         zombieNoise.Play();
-        zombieNoise.volume = 0.5f;
+        zombieNoise.volume = 0.15f;
     }
 
     private void Update()
