@@ -48,7 +48,7 @@ public class zombieScript : MonoBehaviour
             agent.destination = goal.position;
             if (!agent.pathPending)
             {
-                    if (agent.remainingDistance < 3.1 && agent.remainingDistance > 0.1)
+                    if (agent.isOnNavMesh && agent.remainingDistance < 3.1 && agent.remainingDistance > 0.1)
                     {
                         if (!isAttacking)
                         {

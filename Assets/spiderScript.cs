@@ -47,7 +47,7 @@ public AudioClip playerDeadSound;
 
             if (!agent.pathPending)
             {
-                if (agent.remainingDistance < 4.1 && agent.remainingDistance != 0 && Mathf.Infinity != agent.remainingDistance)
+                if (agent.isOnNavMesh && agent.remainingDistance < 4.1 && agent.remainingDistance != 0 && Mathf.Infinity != agent.remainingDistance)
                 {
                     if (!isAttacking)
                     {
