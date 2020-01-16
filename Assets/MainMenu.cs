@@ -73,13 +73,12 @@ public class MainMenu : MonoBehaviour
 }
 
     public void Update(){
-    if(Input.GetButton("joystick button 1"))
+    if(Input.GetButton("Fire1"))
         {
-            Debug.Log("fire1");
             PlayGame();
         }
     
-    if(Input.GetButton("Jump") || Input.GetKey(KeyCode.Space) || Input.GetButton("joystick button 0") )
+    if(Input.GetButton("Jump") || Input.GetKey(KeyCode.Space) )
         {
             //TODO: actually change diffficulty in game scene
             if(!changeDifficulityBlocked)
@@ -88,16 +87,18 @@ public class MainMenu : MonoBehaviour
                 changeDifficulityBlocked = true;
                 Invoke("unblockDifficulity", 0.4f);
             }
-            Debug.Log("fire2");
             
         }
     
-    if(Input.GetButton("Fire3") || Input.GetButton("joystick button 2"))
+    if(Input.GetButton("Cancel"))
         {
-            Debug.Log("fire3");
+            Debug.Log("Quiting game");
             QuitGame();
         }
+
+
     }
+    
 
     void unblockDifficulity()
     {
