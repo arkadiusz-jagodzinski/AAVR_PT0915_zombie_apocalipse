@@ -78,7 +78,7 @@ public class MainMenu : MonoBehaviour
             PlayGame();
         }
     
-    if(Input.GetButton("Jump") || Input.GetKey(KeyCode.Space) )
+    if(Input.GetButton("Fire3") || Input.GetKey(KeyCode.Space) )
         {
             //TODO: actually change diffficulty in game scene
             if(!changeDifficulityBlocked)
