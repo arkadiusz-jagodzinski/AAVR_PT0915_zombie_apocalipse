@@ -38,7 +38,7 @@ public class powerUpScript : MonoBehaviour
             Debug.Log("PowerUp: Przyspieszenie");
             GameState.walkingSpeed *= SPEED_BOOST;
             Invoke("disablingSpeedUp", SPEED_UP_LENGTH);
-            FindObjectOfType<HUDScript>().mTextNotification.text = "Przyśpieszenie";
+            FindObjectOfType<HUDScript>().mTextNotification.text = "Speed up";
             FindObjectOfType<HUDScript>().mPanelNotification.gameObject.SetActive(true);
            
         }
@@ -47,7 +47,7 @@ public class powerUpScript : MonoBehaviour
             Debug.Log("PowerUp: nieśmiertelność");
             HealthBarScript.isMortal = false;
             Invoke("disablingImmortality", IMMORTALITY_LENGTH);
-            FindObjectOfType<HUDScript>().mTextNotification.text = "Nieśmiertelność";
+            FindObjectOfType<HUDScript>().mTextNotification.text = "Immortality";
             FindObjectOfType<HUDScript>().mPanelNotification.gameObject.SetActive(true);
             
         }
@@ -60,7 +60,7 @@ public class powerUpScript : MonoBehaviour
                 enemy.GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = false;
             }
             Invoke("disablingFrozenEnemies", FROZEN_ENEMIES_LENGTH);
-            FindObjectOfType<HUDScript>().mTextNotification.text = "Zamrożenie";
+            FindObjectOfType<HUDScript>().mTextNotification.text = "Frozen";
             FindObjectOfType<HUDScript>().mPanelNotification.gameObject.SetActive(true);
             
         }
