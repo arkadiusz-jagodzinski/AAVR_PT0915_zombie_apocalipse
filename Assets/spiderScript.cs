@@ -15,8 +15,8 @@ public AudioClip playerDeadSound;
     private bool isAttacking = false;
     private bool zombieDead = false;
 
-    private AudioSource zombieNoise;
-    private AudioSource hit;
+    AudioSource zombieNoise;
+    AudioSource hit;
 
     void Start()
     {
@@ -70,11 +70,13 @@ public AudioClip playerDeadSound;
             {
                 isAttacking = false;
             }
-            /*
-            if (PlayerScript.gameEnded)
+            
+            if (PlayerScript.gameEnded || PlayerScript.gamePaused)
             {
-                Destroy(gameObject);
-            }*/
+                zombieNoise.mute = true;
+            }else{
+                zombieNoise.mute = false;
+            }
         }
     }
     public void attack()

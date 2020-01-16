@@ -82,11 +82,12 @@ public class zombieScript : MonoBehaviour
                 isAttacking = false;
             }
 
-            /*     if (PlayerScript.gameEnded)
-                 {
-                     Destroy(gameObject);
-                 }
-                 */
+            if (PlayerScript.gameEnded || PlayerScript.gamePaused)
+            {
+                zombieNoise.mute = true;
+            }else{
+                zombieNoise.mute = false;
+            }
         }
     }
     public void attack()
